@@ -34,6 +34,7 @@ var app = new Vue({
         { text: 'Learn JavaScript' },
         { text: 'Learn Vue' },
         { text: 'Build something awesome' }
-      ]
+      ],
+      jsonCodigoEventosColectivos:stringConvertidoAObjeto
     }
   });
