@@ -11,3 +11,7 @@
 11. El campo tipo num debe llamar una función que limite la entrada tipo número  min max<input number> de acuerdo a la cantidad de elementos que tenga el campo auxiliar Generado
 12. El campo auxiliar generado debe generarse si el tipo de datos es número y si el campo "valorPorDefecto" dice "listaDesplegable"
 13. El campo auxiliar generado se llena con datos provenientes de un json. Este json se expone como servicio para ser consumido
+
+_________________________________________________________________________________________________________________________________________________________
+MODELO VUE
+1. Se encuentra en el archivo modeloVUE.js
