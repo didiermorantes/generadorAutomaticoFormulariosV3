@@ -1,0 +1,13 @@
+1. El Generador depende enteramente de la tablaTipoEvento
+2. Se muestran solamente los campos que tienen el valor "1" en el campo editable. Los que tengan valor "0" no se muestran
+3. Los elementos pueden organizarse por grupos teniendo en cuenta el campo "grupo" y "ordenGrupo"
+4. El campo "envoltorio" de la tabla tiene propósitos de mostrar un titulo y organizar grupos. Ese campo únicamente se diligenciará para el primer elemento del mismo grupo al que pertenece el envoltorio. Los demas elementos del mismo grupo(después del primero) tendrán valor null
+5. El valor null en los demas campos que no sean el primero al que le corresponde el envoltorio servirá para organizar de acuerdo al campo "grupo"
+6. El ordenamiento primario se realiza a traves del campo denominado "orden". Este campo debe tener correlación con el campo grupo, y este a su vez con el campo OrdenGrupo para que todo funcione correctamente. No tiene sentido colocar como "grupo" 1 un campo que tenga su valor de orden 39 o 40. Si usted coloca un campo como grupo 1, inexorablemente su campo "orden" tiene que pertenecer a los primeros lugares.
+7. El campo "descripción" de la tabla sirve para colocar los labels o etiquetas de cada campo del formulario
+8. El campo "expresionRegular" sirve para colocar tooltip a cada campo
+9. El campo "jsEvento" sirve para colocar el nombre de cada funcion. Estas funciones residirán en el archivo denominado "funcionesValidaCampos.js"
+10. Para listas desplegables, como es el caso de "cancer en menores de 18" es necesario agregar un nuevo campo que acompañe al campo original. Esté campo tendría que ser dibujado por programación e insertado en el DOM, de acuerdo a la selección que se haga del primer campo, que normalmente puede ser del tipo número. En otras palabras, el campo original cuenta con números , de manera que el segundo campo muestre el nombre de ese número
+11. El campo tipo num debe llamar una función que limite la entrada tipo número  min max<input number> de acuerdo a la cantidad de elementos que tenga el campo auxiliar Generado
+12. El campo auxiliar generado debe generarse si el tipo de datos es número y si el campo "valorPorDefecto" dice "listaDesplegable"
+13. El campo auxiliar generado se llena con datos provenientes de un json. Este json se expone como servicio para ser consumido
