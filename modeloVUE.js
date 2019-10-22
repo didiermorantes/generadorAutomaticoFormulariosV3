@@ -1,9 +1,6 @@
 //directiva para usar vue dev tools en chrome
 Vue.config.devtools = true;
 
-//directva para usar el componente dropdown
-
-Vue.use(Dropdown);
 
 /*
 LA CLAVE ES OBTENER EL JSON MEDIANTE EL SCRIPT recuperaJson.js, Y LUEGO ALMACENAR EL RESULTADO EN LOCALSTORAGE
@@ -41,6 +38,7 @@ var app = new Vue({
       label_nombre_evento: "Nombre Evento",
       codigo_seleccionado_evento:null,
       nombre_seleccionado_evento:null,
+      seleccion_evento: { id: null, name: null },
       jsonDatosINS:stringConvertidoAObjeto
     },
     methods:{

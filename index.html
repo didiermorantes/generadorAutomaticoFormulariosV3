@@ -11,12 +11,7 @@
         
     <script type="text/javascript" src="./generadorAutomaticoFormulario.js"></script>
 
-    						<!-- Libreria para usar el componente dropdown
-		descargada de https://github.com/RomainSimon/vue-simple-search-dropdown 
-		Lo colocamos en la cabecera para no tener problemas cargando el componente de vue asociado
-		-->
 
-		<script type="text/javascript" src="js/vue-simple-search-dropdown/dist/vue-simple-search-dropdown.min.js"></script>
     
     <!-- BOOTSTRAP-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -110,14 +105,8 @@ una mejore es indicarle a vue cual es el indice
 						data-container="body" data-toggle="m-popover" data-placement="top" data-content="El nombre del evento depende del código del evento. Por favor seleccione el código del evento para desplegar la información del nombre del evento." data-original-title="Campo bloqueado"  >
 
 
-						<Dropdown
-						:options="opciones"
-						v-on:selected="validateSelection"
-						v-on:filter="getDropdownValues"
-						:disabled="false"
-						placeholder="Por favor seleccione el nombre del evento">
-					</Dropdown>
-					<p>Evento seleccionado: {{ seleccion.name || 'ninguno' }}</p>
+
+					<p>Evento seleccionado: {{ seleccion_evento.name || 'ninguno' }}</p>
 					</div>
 
 
