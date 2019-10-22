@@ -61,13 +61,30 @@
       <p id="demo"></p>
 -->   
       <hr/>
-      Seleccione un Evento de la Lista: <select id="miListaEventosEspecificos" name="miListaEventosEspecificos" onchange="leerBDListaEspecificos()">
-        <option value="0"></option>
-        <option value="79">155:Cáncer de Mama y Cuello Uterino</option>
-        <option value="1">310:Fiebre Amarilla</option>
-        <option value="63">115:Cáncer en Menores de 18</option>
+      Seleccione un Evento de la Lista:
+      <select class="form-control m-input m-input--square" id="codigo_evento" placeholder="Código del evento u ocurrencia"  title="" v-model="codigo_seleccionado_evento" v-on:change="nombre_evento"
+      data-container="body" data-toggle="m-popover" data-placement="top" data-content="Seleccione el código del evento" data-original-title="">
+<!--
+En caso de que queramos obtener los indices de nuestra iteración, lo podemos hacer pasando el indice como argumento a v-for (en este caso index):
 
-      </select>
+<li v-for="(tarea, indice) of tasks">
+    {{ indice }}: {{ tarea }}
+</li>
+
+
+una mejore es indicarle a vue cual es el indice
+
+<li v-for="(tarea, indice) of tasks" :key="indice">
+    {{ indice }}: {{ tarea }}
+</li>
+
+<option v-for="(codigo, indice) in modelo_evento_colectivo" :key="indice">{{ indice }}    {{ codigo.codigo_evento_sivigila }}</option>
+                  
+
+-->					
+<!-- accedemos al modelo jsonCodigoEventosColectivos, la clave "eventos", que posee como valores los códigos y los nombres de los eventos -->
+                <option v-for="(codigo, indice) in jsonDatosINS.eventos" :key="indice">{{ codigo.codigoEvento }}</option>
+                  </select>
 
       <p id="demo2"></p>
 

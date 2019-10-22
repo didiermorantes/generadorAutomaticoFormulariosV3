@@ -25,16 +25,79 @@ if (typeof(Storage) !== "undefined") {
 
 } else {
 	
-  document.getElementById("demo").innerHTML = "Sorry, your browser does not support Web Storage...";
+  document.getElementById("demo").innerHTML = "Lo sentimos, su navegador no soporta Web Storage...";
 }
 var app = new Vue({
     el: 'main',
     data: {
-      todos: [
-        { text: 'Learn JavaScript' },
-        { text: 'Learn Vue' },
-        { text: 'Build something awesome' }
-      ],
-      jsonCodigoEventosColectivos:stringConvertidoAObjeto
-    }
+      codigo_seleccionado_evento:null,
+      jsonDatosINS:stringConvertidoAObjeto
+    },
+    methods:{
+		
+      nombre_evento: function(){
+        console.log("Mensaje de main.js. funciona el evento v-on:change del elemento html <select> con id=codigo_evento ");
+        var codigoEventoLocal= this.codigo_seleccionado_evento;
+        console.log("Mensaje de main.js. Este es el código del evento: ");
+        console.log(codigoEventoLocal);
+  
+          /* 
+            BUSCAR CLAVES EN JSON
+              var json = { "key1" : "watevr1", "key2" : "watevr2", "key3" : "watevr3" };
+              var keytoFind = "key2";
+              var index = Object.keys(json).indexOf(keytoFind);
+              alert(index);
+          */	
+  
+  //return Object.keys(obj)[Object.values(obj).indexOf(value)];
+  
+  
+  
+                  
+                
+  
+                  
+  /*
+  
+  EJEMPLO DE OBTENER INDICES DE UN JSON
+  a = [
+    {prop1:"abc",prop2:"qwe"},
+    {prop1:"bnmb",prop2:"yutu"},
+    {prop1:"zxvz",prop2:"qwrq"}];
+      
+  index = a.findIndex(x => x.prop2=="yutu");
+  
+  console.log(index);
+  
+  */
+  
+                  //obtenemos el modelo
+                  var miJson = this.jsonCodigoEventosColectivos;
+  
+                  //Almaceno el elemenento "eventos" del objeto JavaScript en una variable para ser recorrida, pues contiene arrays
+                  var eventosColectivos=miJson.eventos;
+  
+                  //obtenemos el índice del arreglo que contiene el código del evento seleccionado
+                
+                  index = eventosColectivos.findIndex(key => key.codigoEvento==codigoEventoLocal);
+              
+                  //mostramos en consola el índice
+                  console.log("Mensaje de main.js.Este es el índice del evento: ");
+                  console.log(index);
+                  //asignamos a la variable del modelo nombre_seleccionado_evento, el valor obtenido de explorar el arreglo del modelo Json
+                  //con  el indice obtenido en el paso anterior. Con ese indice podemos obtener el nombre del evento
+                  this.nombre_seleccionado_evento=eventosColectivos[index].nombreEvento;
+                  console.log("Mensaje de main.js.Este es el nombre del evento: ");
+                  console.log(this.nombre_seleccionado_evento);
+  
+                  //llamamos la propiedad computada
+                  this.calcularFechaActual;
+            
+  
+  
+  
+  
+  
+      }//fin funcion nombre_evento_colectivo
+   }//fin methods
   });

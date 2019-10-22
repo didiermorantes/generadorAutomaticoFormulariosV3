@@ -1,5 +1,5 @@
 
-var url='jsonDatos.json';
+var url='json/informacionINS.json';
 fetch(url,{
 	headers: {
 		"Content-Type": "application/json"
