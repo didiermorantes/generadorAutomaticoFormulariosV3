@@ -10,6 +10,13 @@
         <script src="recuperaJson.js"></script>
         
     <script type="text/javascript" src="./generadorAutomaticoFormulario.js"></script>
+
+    						<!-- Libreria para usar el componente dropdown
+		descargada de https://github.com/RomainSimon/vue-simple-search-dropdown 
+		Lo colocamos en la cabecera para no tener problemas cargando el componente de vue asociado
+		-->
+
+		<script type="text/javascript" src="js/vue-simple-search-dropdown/dist/vue-simple-search-dropdown.min.js"></script>
     
     <!-- BOOTSTRAP-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -25,79 +32,101 @@
         <img src="img/header.jpg" class="img-fluid" alt="Responsive image">
       </header>
 
+
+
+  <main>
+
     <form id="myForm" action="" method="POST">
- <!--   
-            <label for="dato">Ingrese Cantidad de Cajas a Crear:</label>
-            <input type="number" name="dato" id="dato">
-            <input type="button" onclick="generaCajas()" value="enviar">
- 
-<br/>
-    <button type="button" class="btn btn-info" onclick="UserAction()">Contenido JSON de archivo</button>
-    <button type="button" class="btn btn-warning" onclick="leerJson()">Obtener JSON  de archivo para Generacion</button>
-    <button type="button" class="btn btn-danger" onclick="leerBD()">Obtener JSON de base de datos para Generacion</button>
-    <br/><hr/><br/>
-
-    <select id="miListaEventos" name="miListaEventos" onchange="leerBDLista()">
-        <option value="0"></option>
-        <option value="1">tabla 1</option>
-        <option value="2">tabla 2</option>
-        <option value="3">tabla 3</option>
-        <option value="4">tabla 4</option>
-        <option value="5">tabla 5</option>
-        <option value="6">tabla 6</option>
-        <option value="7">tabla 7</option>
-        <option value="8">tabla 8</option>
-        <option value="9">tabla 9</option>
-        <option value="10">tabla 10</option>
-        <option value="11">tabla 11</option>
-        <option value="12">tabla 12</option>
-
-      </select>
+      <!--   
+                 <label for="dato">Ingrese Cantidad de Cajas a Crear:</label>
+                 <input type="number" name="dato" id="dato">
+                 <input type="button" onclick="generaCajas()" value="enviar">
       
-      
-      <input type="text" name="datoCaja" id="datoCaja">
-      <input type="button" onclick="leerBDCaja()" value="procesar">
+     <br/>
+         <button type="button" class="btn btn-info" onclick="UserAction()">Contenido JSON de archivo</button>
+         <button type="button" class="btn btn-warning" onclick="leerJson()">Obtener JSON  de archivo para Generacion</button>
+         <button type="button" class="btn btn-danger" onclick="leerBD()">Obtener JSON de base de datos para Generacion</button>
+         <br/><hr/><br/>
+     
+         <select id="miListaEventos" name="miListaEventos" onchange="leerBDLista()">
+             <option value="0"></option>
+             <option value="1">tabla 1</option>
+             <option value="2">tabla 2</option>
+             <option value="3">tabla 3</option>
+             <option value="4">tabla 4</option>
+             <option value="5">tabla 5</option>
+             <option value="6">tabla 6</option>
+             <option value="7">tabla 7</option>
+             <option value="8">tabla 8</option>
+             <option value="9">tabla 9</option>
+             <option value="10">tabla 10</option>
+             <option value="11">tabla 11</option>
+             <option value="12">tabla 12</option>
+     
+           </select>
+           
+           
+           <input type="text" name="datoCaja" id="datoCaja">
+           <input type="button" onclick="leerBDCaja()" value="procesar">
+     
+           <p id="demo"></p>
+     -->   
+           <hr/>
+           <div class="form-group col-sm-2">
+						<label for="codigo_evento" data-toggle="m-tooltip" data-placement="top" title="" data-original-title="Código del Evento Colectivo">{{ label_codigo_evento }}</label>
+						
+						<select class="form-control m-input m-input--square" id="codigo_evento" placeholder="Código del evento u ocurrencia"  title="" v-model="codigo_seleccionado_evento" v-on:change="nombre_evento"
+						data-container="body" data-toggle="m-popover" data-placement="top" data-content="Seleccione el código del evento de notificación" data-original-title="">
+		<!--
+		En caso de que queramos obtener los indices de nuestra iteración, lo podemos hacer pasando el indice como argumento a v-for (en este caso index):
 
-      <p id="demo"></p>
--->   
-      <hr/>
-      Seleccione un Evento de la Lista:
-      <select class="form-control m-input m-input--square" id="codigo_evento" placeholder="Código del evento u ocurrencia"  title="" v-model="codigo_seleccionado_evento" v-on:change="nombre_evento"
-      data-container="body" data-toggle="m-popover" data-placement="top" data-content="Seleccione el código del evento" data-original-title="">
-<!--
-En caso de que queramos obtener los indices de nuestra iteración, lo podemos hacer pasando el indice como argumento a v-for (en este caso index):
-
-<li v-for="(tarea, indice) of tasks">
-    {{ indice }}: {{ tarea }}
-</li>
+			<li v-for="(tarea, indice) of tasks">
+	 		   {{ indice }}: {{ tarea }}
+			</li>
 
 
 una mejore es indicarle a vue cual es el indice
 
-<li v-for="(tarea, indice) of tasks" :key="indice">
-    {{ indice }}: {{ tarea }}
-</li>
+			<li v-for="(tarea, indice) of tasks" :key="indice">
+	 		   {{ indice }}: {{ tarea }}
+			</li>
 
-<option v-for="(codigo, indice) in modelo_evento_colectivo" :key="indice">{{ indice }}    {{ codigo.codigo_evento_sivigila }}</option>
-                  
+			<option v-for="(codigo, indice) in modelo_evento_colectivo" :key="indice">{{ indice }}    {{ codigo.codigo_evento_sivigila }}</option>
+												
 
 -->					
 <!-- accedemos al modelo jsonCodigoEventosColectivos, la clave "eventos", que posee como valores los códigos y los nombres de los eventos -->
-                <option v-for="(codigo, indice) in jsonDatosINS.eventos" :key="indice">{{ codigo.codigoEvento }}</option>
-                  </select>
+											<option v-for="(codigo, indice) in jsonDatosINS.eventos" :key="indice">{{ codigo.codigoEvento }}</option>
+												</select>
 
-      <p id="demo2"></p>
+												
+					</div>
+     
 
-    </form>
+					<!--Elemento 2 -->
+					<div class="form-group col-sm-10">
+						<label for="nombre_evento" data-toggle="m-tooltip" data-placement="top" title="" data-original-title="Nombre del Evento Colectivo">{{ label_nombre_evento }}</label>
+						<input type="text" class="form-control m-input m-input--solid" id="nombre_evento" placeholder="Nombre del Evento. Depende del código del evento." title=""  v-model="nombre_seleccionado_evento" readonly
+						data-container="body" data-toggle="m-popover" data-placement="top" data-content="El nombre del evento depende del código del evento. Por favor seleccione el código del evento para desplegar la información del nombre del evento." data-original-title="Campo bloqueado"  >
 
-  <main>
-    <div>
-      <ol>
-          <li v-for="todo in todos">
-          {{ todo.text }}
-          </li>
-      </ol>
-  </div>
+
+						<Dropdown
+						:options="opciones"
+						v-on:selected="validateSelection"
+						v-on:filter="getDropdownValues"
+						:disabled="false"
+						placeholder="Por favor seleccione el nombre del evento">
+					</Dropdown>
+					<p>Evento seleccionado: {{ seleccion.name || 'ninguno' }}</p>
+					</div>
+
+
+           <p id="demo2"></p>
+     
+         </form>
+
+
+
 </main>
   <script src="modeloVUE.js"></script><!-- modelo VUE-->
 

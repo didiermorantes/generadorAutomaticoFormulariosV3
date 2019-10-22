@@ -1,3 +1,10 @@
+//directiva para usar vue dev tools en chrome
+Vue.config.devtools = true;
+
+//directva para usar el componente dropdown
+
+Vue.use(Dropdown);
+
 /*
 LA CLAVE ES OBTENER EL JSON MEDIANTE EL SCRIPT recuperaJson.js, Y LUEGO ALMACENAR EL RESULTADO EN LOCALSTORAGE
 LUEGO, modeloVUE.js , IMPORTAMOS EL OBJETO ALMACENADO EN LOCALSTORGAE Y ALMACENARLO EN EL OBJETO VUE
@@ -30,7 +37,10 @@ if (typeof(Storage) !== "undefined") {
 var app = new Vue({
     el: 'main',
     data: {
+      label_codigo_evento: "Código Evento",
+      label_nombre_evento: "Nombre Evento",
       codigo_seleccionado_evento:null,
+      nombre_seleccionado_evento:null,
       jsonDatosINS:stringConvertidoAObjeto
     },
     methods:{
@@ -72,32 +82,29 @@ var app = new Vue({
   */
   
                   //obtenemos el modelo
-                  var miJson = this.jsonCodigoEventosColectivos;
+                  var miJson = this.jsonDatosINS;
   
                   //Almaceno el elemenento "eventos" del objeto JavaScript en una variable para ser recorrida, pues contiene arrays
-                  var eventosColectivos=miJson.eventos;
+                  var eventos=miJson.eventos;
   
                   //obtenemos el índice del arreglo que contiene el código del evento seleccionado
                 
-                  index = eventosColectivos.findIndex(key => key.codigoEvento==codigoEventoLocal);
+                  index = eventos.findIndex(key => key.codigoEvento==codigoEventoLocal);
               
                   //mostramos en consola el índice
                   console.log("Mensaje de main.js.Este es el índice del evento: ");
                   console.log(index);
                   //asignamos a la variable del modelo nombre_seleccionado_evento, el valor obtenido de explorar el arreglo del modelo Json
                   //con  el indice obtenido en el paso anterior. Con ese indice podemos obtener el nombre del evento
-                  this.nombre_seleccionado_evento=eventosColectivos[index].nombreEvento;
+                  this.nombre_seleccionado_evento=eventos[index].nombreEvento;
                   console.log("Mensaje de main.js.Este es el nombre del evento: ");
                   console.log(this.nombre_seleccionado_evento);
-  
-                  //llamamos la propiedad computada
-                  this.calcularFechaActual;
-            
+
   
   
   
   
   
-      }//fin funcion nombre_evento_colectivo
+      }//fin funcion nombre_evento
    }//fin methods
   });
