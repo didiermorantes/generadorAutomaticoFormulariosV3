@@ -121,8 +121,13 @@ una mejore es indicarle a vue cual es el indice
 
 </main>
 
-
-
+<!-- HABILITMOS TOOLTIP Y POPOVER-->
+<script>
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();  
+    $('[data-toggle="popover"]').popover();  
+  });
+  </script>
 
 <!--modelo vue-->
   <script src="modeloVUE.js"></script><!-- modelo VUE-->
