@@ -8,7 +8,7 @@
     				<!-- MI SCRIPT PARA RECUPERAR EL JSON CON INFORMACIÓN DE LISTAS Y DEMÁS
 				LO COLOCAMOS EN LA CABECERA PARA QUE LO PRIMERO QUE SE HAGA SEA RECUPERAR EL JSON-->
         <script src="recuperaJson.js"></script>
-        
+      <!-- Script para el generador automático de formularios-->  
     <script type="text/javascript" src="./generadorAutomaticoFormulario.js"></script>
 
 
@@ -70,11 +70,13 @@
            <p id="demo"></p>
      -->   
            <hr/>
+
+  <div class="form-row">  
            <div class="form-group col-sm-2">
 						<label for="codigo_evento" data-toggle="tooltip" data-placement="top" title="" data-original-title="Código del Evento Colectivo">{{ label_codigo_evento }}</label>
 						
 						<select class="form-control m-input m-input--square" id="codigo_evento" placeholder="Código del evento u ocurrencia"  title="" v-model="codigo_seleccionado_evento" v-on:change="nombre_evento"
-						data-container="body" data-toggle="popover" data-placement="top" data-content="Seleccione el código del evento de notificación" data-original-title="">
+						data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Seleccione el código del evento de notificación" data-original-title="Seleccione el evento">
 		<!--
 		En caso de que queramos obtener los indices de nuestra iteración, lo podemos hacer pasando el indice como argumento a v-for (en este caso index):
 
@@ -103,14 +105,13 @@ una mejore es indicarle a vue cual es el indice
 
 					<!--Elemento 2 -->
 					<div class="form-group col-sm-10">
-						<label for="nombre_evento" data-toggle="m-tooltip" data-placement="top" title="" data-original-title="Nombre del Evento Colectivo">{{ label_nombre_evento }}</label>
+						<label for="nombre_evento" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nombre del Evento Colectivo">{{ label_nombre_evento }}</label>
 						<input type="text" class="form-control m-input m-input--solid" id="nombre_evento" placeholder="Nombre del Evento. Depende del código del evento." title=""  v-model="nombre_seleccionado_evento" readonly
-						data-container="body" data-toggle="m-popover" data-placement="top" data-content="El nombre del evento depende del código del evento. Por favor seleccione el código del evento para desplegar la información del nombre del evento." data-original-title="Campo bloqueado"  >
+						data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="El nombre del evento depende del código del evento. Por favor seleccione el código del evento para desplegar la información del nombre del evento." data-original-title="Campo bloqueado"  >
 
 
-
-					<p>Evento seleccionado: {{ seleccion_evento .name || 'ninguno' }}</p>
 					</div>
+</div>
 
 
            <p id="demo2"></p>
@@ -121,7 +122,7 @@ una mejore es indicarle a vue cual es el indice
 
 </main>
 
-<!-- HABILITMOS TOOLTIP Y POPOVER-->
+<!-- HABILITMOS TOOLTIP Y POPOVER CON JQUERY-->
 <script>
   $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();  
