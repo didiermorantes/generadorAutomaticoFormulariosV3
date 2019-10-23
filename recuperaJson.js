@@ -11,9 +11,9 @@ fetch(url,{
 	return respuesta.json();
 })
 .then(datos=>{
-	console.log("Mensaje de myJs. Los datos obtenidos por fetch son : ");
+	console.log("Mensaje de recuperaJson. Los datos obtenidos por fetch son : ");
 	console.dir( datos );
-	console.log("Mensaje de myJs. El tipo de datos del elemento recibido por fetch es : ");
+	console.log("Mensaje de recuperaJson. El tipo de datos del elemento recibido por fetch es : ");
     console.log(typeof datos);
     
 
@@ -40,6 +40,6 @@ fetch(url,{
 })
 .catch( e => {
 	 
-	 console.error( 'Mensaje de myJs.js. Algo salio mal. Error en la siguiente linea: ' ) ;
+	 console.error( 'Mensaje de recuperaJson.js. Algo salio mal. Error en la siguiente linea: ' ) ;
 	 console.log(e);
 	 });
