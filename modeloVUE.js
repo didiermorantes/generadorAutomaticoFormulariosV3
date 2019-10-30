@@ -22,7 +22,7 @@ if (typeof(Storage) !== "undefined") {
 	var stringRecuperadoLocalStorage = localStorage.getItem('jsonAStringTransferido'); //recuperamos el json almacenado en localstorage
 
 	var stringConvertidoAObjeto=JSON.parse(stringRecuperadoLocalStorage); //Convertimos de nuevo el string en objeto javascript para ser manipulado
-	console.log("Mensaje de main.js: el string convertido a objeto recibido por localstorage es: ");
+	console.log("Mensaje de modeloVUE.js: el string convertido a objeto recibido por localstorage es: ");
 	console.log(stringConvertidoAObjeto);
 
 
@@ -38,14 +38,15 @@ var app = new Vue({
       label_nombre_evento: "Nombre Evento",
       codigo_seleccionado_evento:null,
       nombre_seleccionado_evento:null,
+      id_tabla_evento:null,
       jsonDatosINS:stringConvertidoAObjeto
     },
     methods:{
 		
       nombre_evento: function(){
-        console.log("Mensaje de main.js. funciona el evento v-on:change del elemento html <select> con id=codigo_evento ");
+        console.log("Mensaje de modeloVUE.js. funciona el evento v-on:change del elemento html <select> con id=codigo_evento ");
         var codigoEventoLocal= this.codigo_seleccionado_evento;
-        console.log("Mensaje de main.js. Este es el código del evento: ");
+        console.log("Mensaje de modeloVUE.js. Este es el código del evento: ");
         console.log(codigoEventoLocal);
   
           /* 
@@ -81,21 +82,32 @@ var app = new Vue({
                   //obtenemos el modelo
                   var miJson = this.jsonDatosINS;
   
-                  //Almaceno el elemenento "eventos" del objeto JavaScript en una variable para ser recorrida, pues contiene arrays
+                  //Almaceno el elemento "eventos" del objeto JavaScript en una variable para ser recorrida, pues contiene arrays
                   var eventos=miJson.eventos;
+
+                  //Almaceno el elemento "correlacionTablasEventos" del objeto JavaScript en una variable para ser recorrida, pues contiene arrays
+                  var correlacionTablasEventos=miJson.correlacionTablasEventos;
   
                   //obtenemos el índice del arreglo que contiene el código del evento seleccionado
                 
                   index = eventos.findIndex(key => key.codigoEvento==codigoEventoLocal);
               
                   //mostramos en consola el índice
-                  console.log("Mensaje de main.js.Este es el índice del evento: ");
+                  console.log("Mensaje de modeloVUE.js.Este es el índice del evento: ");
                   console.log(index);
+
+                  
                   //asignamos a la variable del modelo nombre_seleccionado_evento, el valor obtenido de explorar el arreglo del modelo Json
                   //con  el indice obtenido en el paso anterior. Con ese indice podemos obtener el nombre del evento
                   this.nombre_seleccionado_evento=eventos[index].nombreEvento;
-                  console.log("Mensaje de main.js.Este es el nombre del evento: ");
+                  console.log("Mensaje de modeloVUE.js.Este es el nombre del evento: ");
                   console.log(this.nombre_seleccionado_evento);
+
+
+                  //conseguimos el valor del idTablaEvento con el valor del codigo evento
+                  this.id_tabla_evento=correlacionTablasEventos[index].idTablaEvento;
+                  console.log("Mensaje de modeloVUE.js.Este es el idTablaEvento del codigo del evento seleccionado: ");
+                  console.log(this.id_tabla_evento);           
 
   
   
@@ -105,9 +117,13 @@ var app = new Vue({
       },//fin funcion nombre_evento
        /* funcion que genera cajas de acuerdo a la respuesta json de la BD y a la lista seleccionada*/
  leerBDListaEspecificos:function(){
-
+//El json que reside en la base de datos proporcionada por ICONOI tiene como campo importante en idTablaEvento que ser corresponde reciprocamente con las tablas del sivigila escritorio
+//Debemos hacer una conversión del id del evento que hemos seleccionado con el idTablaEvento correspóndiente para que el generador automatico funcione
+//por ejemplo, el evento 155 se correlaciona con idTablaEvento 79, que a su vez se corresponde reciprocamente con la tabla de sivigila escritorio EVENTOS_79
     
-  var datoSeleccionadoLista10 = document.getElementById("codigo_evento").value;
+//en este caso, se usará el id_tabla_evento capturado en la función nombre_evento para que trabaje el generador automatico de formularios
+
+  var datoSeleccionadoLista10 = this.id_tabla_evento;
   
   document.getElementById("demo2").innerHTML = "Eligio Tabla Evento : " + datoSeleccionadoLista10;
 
@@ -126,7 +142,7 @@ var app = new Vue({
    var contadorListaDesplegable=0;//variable para almacenar la cantidad de listas desplegables
 
    
-   fetch('https://vitalsaludem.com/services2/api_db/tipoEvento/leerLista.php')
+   fetch('https://vitalsaludem.com/services3/generadorAutomaticoFormulariosV3/api_db/tipoEvento/leerLista.php')
    .then(function(response14) {
        //devuelve un objeto promise conteniendo la respuesta, el objeto response
            //response es una respuesta http y no el archivo json, por tanto, usamos el método json() para extraer el contenido
@@ -142,16 +158,19 @@ var app = new Vue({
        //si no especificamos el objeto, el json solamente tiene un elemento, es decir, solamente tiene el objeto registros
      datoLeido14=Object.keys(myJson14.registros).length; //esto arroja la cantidad de registros TOTAL que tiene el json
      
-
+    //contenido del myJson14
+     console.log('1. El json mostrado por consola es: ');
        //luego de obtener la respuesta  con el contenido del json, lo mostramos en consola. Podemos mostrarlo sin ningún tratamiento ya que la consola permite ver objetos
        console.log(myJson14);
+
     // console.log('La cantidad de elementos que tiene el json en el objeto "personas" es : '+datoLeido);    ---DESCOMENTARIAR SI SE USA EL JSON PERSONAS
-     console.log('La cantidad de elementos que tiene el json en el objeto "registros" es : '+datoLeido14);
+     console.log('2. La cantidad de elementos que tiene el json en el objeto "registros" es : '+datoLeido14);
      //stringify convierte el objeto en json para ser visualizado por el alert, o si no  solo se observa object object
      alert(JSON.stringify(myJson14));
    
      /* PROCESO PARA DETERMINAR LA TABLA DESEADA , DE ACUERDO A LA LISTA DESPLEGABLE */
                   myJsonProcesado10 =myJson14.registros[datoSeleccionadoLista10]; 
+  
 
                   var testigoPrimerDato10=0;//variable para encontrar el primer dato que tenga el idTablaEvento
                   var testigoUltimoDato10=0;//Variable para encontrar el ultimo dato que tenga el idTablaEvento
