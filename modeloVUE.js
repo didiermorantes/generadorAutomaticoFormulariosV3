@@ -104,8 +104,8 @@ var app = new Vue({
                   console.log(this.nombre_seleccionado_evento);
 
 
-                  //conseguimos el valor del idTablaEvento con el valor del codigo evento
-                  this.id_tabla_evento=correlacionTablasEventos[index].idTablaEvento;
+                  //conseguimos el valor del idTablaEvento con el valor del codigo evento. Convertimos a entero dicho valor
+                  this.id_tabla_evento=parseInt(correlacionTablasEventos[index].idTablaEvento);
                   console.log("Mensaje de modeloVUE.js.Este es el idTablaEvento del codigo del evento seleccionado: ");
                   console.log(this.id_tabla_evento);           
 
@@ -169,8 +169,9 @@ var app = new Vue({
      alert(JSON.stringify(myJson14));
    
      /* PROCESO PARA DETERMINAR LA TABLA DESEADA , DE ACUERDO A LA LISTA DESPLEGABLE */
+     console.log('3. El id del evento elegido es : '+datoSeleccionadoLista10);
                   myJsonProcesado10 =myJson14.registros[datoSeleccionadoLista10]; 
-  
+          
 
                   var testigoPrimerDato10=0;//variable para encontrar el primer dato que tenga el idTablaEvento
                   var testigoUltimoDato10=0;//Variable para encontrar el ultimo dato que tenga el idTablaEvento
