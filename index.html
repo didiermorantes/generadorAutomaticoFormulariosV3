@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    				<!-- MI SCRIPT PARA RECUPERAR EL JSON CON INFORMACIÓN DE LISTAS Y DEMÁS
-				LO COLOCAMOS EN LA CABECERA PARA QUE LO PRIMERO QUE SE HAGA SEA RECUPERAR EL JSON-->
-        <script src="recuperaJson.js"></script>
+
       <!-- Script para el generador automático de formularios-->  
     <script type="text/javascript" src="./generadorAutomaticoFormulario.js"></script>
 
-
+    				<!-- MI SCRIPT PARA RECUPERAR EL JSON CON INFORMACIÓN DE LISTAS Y DEMÁS
+        LO COLOCAMOS EN LA CABECERA PARA QUE LO PRIMERO QUE SE HAGA SEA RECUPERAR EL JSON-->
+        <!-- limpiaLocalStorage() recuperarará el json cuando se cargue la pagina-->
+        <!-- <script src="recuperaJson.js"></script> -->
     
     <!-- BOOTSTRAP-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -24,7 +25,7 @@
 
 </head>
 <!-- comenzamos::Body -->
-<body>
+<body onload="limpiaLocalStorage();">
 
     <header class="text-center">
         <img src="img/header.jpg" class="img-fluid" alt="Responsive image">
@@ -71,7 +72,57 @@
      -->   
            <hr/>
 
-  <div class="form-row">  
+  <div class="form-row"> 
+    
+    
+
+
+
+      <div class="form-group col-sm-2">
+          <label for="codigo_ejemplo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Código de Ejemplo">{{ label_codigo_ejemplo }}</label>
+          
+          <select class="form-control m-input m-input--square" id="codigo_ejemplo" placeholder="Código de Ejemplo"  title="" v-model="codigo_seleccionado_ejemplo" v-on:change="nombre_ejemplo"
+          data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Seleccione el código del ejemplo" data-original-title="Seleccione el ejemplo">
+  <!--
+  En caso de que queramos obtener los indices de nuestra iteración, lo podemos hacer pasando el indice como argumento a v-for (en este caso index):
+
+    <li v-for="(tarea, indice) of tasks">
+        {{ indice }}: {{ tarea }}
+    </li>
+
+
+una mejore es indicarle a vue cual es el indice
+
+    <li v-for="(tarea, indice) of tasks" :key="indice">
+        {{ indice }}: {{ tarea }}
+    </li>
+
+    <option v-for="(codigo, indice) in modelo_evento_colectivo" :key="indice">{{ indice }}    {{ codigo.codigo_evento_sivigila }}</option>
+                      
+
+-->					
+<!-- accedemos al modelo jsonCodigoEventosColectivos, la clave "eventos", que posee como valores los códigos y los nombres de los eventos -->
+                    <option v-for="(codigoEjemplo) in jsonDatosINS.municipios" >{{ codigoEjemplo.codigo_municipio }}</option>
+                      </select>
+
+                      
+        </div>
+
+        					<!--Elemento 2 -->
+					<div class="form-group col-sm-10">
+              <label for="nombre_ejemplo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nombre del Ejemplo">{{ label_nombre_ejemplo }}</label>
+              <input type="text" class="form-control m-input m-input--solid" id="nombre_ejemplo" placeholder="Nombre del Ejemplo. Depende del código del ejemplo." title=""  v-model="nombre_seleccionado_ejemplo" readonly
+              data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="El nombre del ejemplo depende del código del ejemplo. Por favor seleccione el código del ejemplo para desplegar la información del nombre del ejemplo." data-original-title="Campo bloqueado"  >
+  
+  
+            </div>
+
+
+
+
+
+
+
            <div class="form-group col-sm-2">
 						<label for="codigo_evento" data-toggle="tooltip" data-placement="top" title="" data-original-title="Código del Evento Colectivo">{{ label_codigo_evento }}</label>
 						
@@ -133,7 +184,6 @@ una mejore es indicarle a vue cual es el indice
 <!--modelo vue-->
   <script src="modeloVUE.js"></script><!-- modelo VUE-->
 
-    
 
 
     <!-- las funciones de validación de campos deben ubicarse al final, de manera que los objetos ya se encuentren en el DOM-->

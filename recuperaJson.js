@@ -1,4 +1,3 @@
-
 var url='json/informacionINS.json';
 fetch(url,{
 	headers: {

@@ -34,14 +34,86 @@ if (typeof(Storage) !== "undefined") {
 var app = new Vue({
     el: 'main',
     data: {
+      label_codigo_ejemplo: "Código Ejemplo",
       label_codigo_evento: "Código Evento",
       label_nombre_evento: "Nombre Evento",
+      label_nombre_ejemplo: "Nombre Ejemplo",
       codigo_seleccionado_evento:null,
+      codigo_seleccionado_ejemplo:null,
       nombre_seleccionado_evento:null,
+      nombre_seleccionado_ejemplo:null,
       id_tabla_evento:null,
       jsonDatosINS:stringConvertidoAObjeto
     },
     methods:{
+
+      		
+      nombre_ejemplo: function(){
+        console.log("Mensaje de modeloVUE.js. funciona el evento v-on:change del elemento html <select> con id=codigo_ejemplo ");
+        var codigoEjemploLocal= this.codigo_seleccionado_ejemplo;
+        console.log("Mensaje de modeloVUE.js. Este es el código del ejemplo: ");
+        console.log(codigoEjemploLocal);
+  
+          /* 
+            BUSCAR CLAVES EN JSON
+              var json = { "key1" : "watevr1", "key2" : "watevr2", "key3" : "watevr3" };
+              var keytoFind = "key2";
+              var index = Object.keys(json).indexOf(keytoFind);
+              alert(index);
+          */	
+  
+  //return Object.keys(obj)[Object.values(obj).indexOf(value)];
+  
+  
+  
+                  
+                
+  
+                  
+  /*
+  
+  EJEMPLO DE OBTENER INDICES DE UN JSON
+  a = [
+    {prop1:"abc",prop2:"qwe"},
+    {prop1:"bnmb",prop2:"yutu"},
+    {prop1:"zxvz",prop2:"qwrq"}];
+      
+  index = a.findIndex(x => x.prop2=="yutu");
+  
+  console.log(index);
+  
+  */
+  
+                  //obtenemos el modelo
+                  var miJsonEj = this.jsonDatosINS;
+  
+                  //Almaceno el elemento "upgd" del objeto JavaScript en una variable para ser recorrida, pues contiene arrays
+                  var municipiosEj=miJsonEj.municipios;
+
+           
+  
+                  //obtenemos el índice del arreglo que contiene el código del evento seleccionado
+                
+                  indexEj = municipiosEj.findIndex(key => key.codigo_municipio==codigoEjemploLocal);
+              
+                  //mostramos en consola el índice
+                  console.log("Mensaje de modeloVUE.js.Este es el índice del ejemplo: ");
+                  console.log(indexEj);
+
+                  
+                  //asignamos a la variable del modelo nombre_seleccionado_ejemplo, el valor obtenido de explorar el arreglo del modelo Json
+                  //con  el indice obtenido en el paso anterior. Con ese indice podemos obtener el nombre del evento
+                  this.nombre_seleccionado_ejemplo=municipiosEj[indexEj].nombre_municipio;
+                  console.log("Mensaje de modeloVUE.js.Este es el nombre del ejemplo: ");
+                  console.log(this.nombre_seleccionado_ejemplo);
+
+       
+
+  
+  
+
+  
+      },//fin funcion nombre_ejemplo
 		
       nombre_evento: function(){
         console.log("Mensaje de modeloVUE.js. funciona el evento v-on:change del elemento html <select> con id=codigo_evento ");
@@ -109,10 +181,21 @@ var app = new Vue({
                   console.log("Mensaje de modeloVUE.js.Este es el idTablaEvento del codigo del evento seleccionado: ");
                   console.log(this.id_tabla_evento);           
 
+                  //SI  NO EXISTE IDTABLAEVENTO ASOCIADO NO SE DIBUJARÁ LA TABLA, POR TANTO NO INVOCAMOS LA FUNCION PARA NO GENERAR ERRORES DE CONSOLA
+
+                    if(this.id_tabla_evento == 0){
+                          //si el idTablaEvento es cero, no hay datos asociados en la tabla, por tanto no se dibuja ningún formulario
+                          document.getElementById("demo2").innerHTML = "No existe idTablaEvento " + this.id_tabla_evento+ " en la tabla, por tanto no se dibuja ningún formulario";
+                    }
+                    else{
+
+                            //como el evento v-on:change de la lista de codigos de eventos llama al nombre_evento, al finalizar esta llamada, se llama a la funcion que genera el formulario
+                            this.leerBDListaEspecificos();
+                    }
+
   
   
-  //como el evento v-on:change de la lista de codigos de eventos llama al nombre_evento, al finalizar esta llamada, se llama a la funcion que genera el formulario
-                  this.leerBDListaEspecificos();
+
   
       },//fin funcion nombre_evento
        /* funcion que genera cajas de acuerdo a la respuesta json de la BD y a la lista seleccionada*/
@@ -586,10 +669,70 @@ localStorage.totalListasDesplegables = contadorListaDesplegable;
 generaFooter();
   
   
-   });//fin function(myJson14)
+   });//fin  then function(myJson14)
   
   
-   }//fin leerBDListaEspecificos
+   },//fin leerBDListaEspecificos
+limpiaLocalStorage: function(){
+  //Se ejecuta cada vez que se carga la página
+localStorage.clear();//limpiamos el localStorage cada vez que se carga la página. Evitamos el error DOMException: "The quota has been exceeded."
+window.localStorage.clear();
+//removemos el item especifico
+localStorage.removeItem('jsonAStringTransferido');
+//luego de limpiar procedemos a recuperar el Json de Nuevo
+recuperaJson();
+   },//fin limpiaLocalStorage
+
+
+  recuperaJson: function(){
+    var url='json/informacionINS.json';
+fetch(url,{
+	headers: {
+		"Content-Type": "application/json"
+			}
+		 }
+	)
+.then(respuesta =>{
+	
+	return respuesta.json();
+})
+.then(datos=>{
+	console.log("Mensaje de recuperaJson. Los datos obtenidos por fetch son : ");
+	console.dir( datos );
+	console.log("Mensaje de recuperaJson. El tipo de datos del elemento recibido por fetch es : ");
+    console.log(typeof datos);
+    
+
+    var jsonRecibidoEnObjeto=datos;//guardamos en jsonRecibidoObjeto el objeto recuperado por fetch
+    
+
+
+
+
+					//OJO: la función .stringify() no funcionará de manera paralela con .parse() si stringify() no se aplica a un objeto json
+					//si  stringify() se aplica a un string, la función .parse() no devolverá un objeto
+	var objetoConvertidoaString = JSON.stringify(jsonRecibidoEnObjeto);
+
+		//mostramos el elemento recuperado y convertido en string en la seccion demo
+	
+	//debe habilitarse en el index el elemento demo para vsualizar el contendo
+	//	document.getElementById("demo").innerHTML = objetoConvertidoaString;
+
+    
+        //A workaround can be to stringify your object before storing it, and later parse it when you retrieve it:
+				  // Almacenamos en localStorage el json convertido a String
+	localStorage.setItem('jsonAStringTransferido', objetoConvertidoaString);
+
+})
+.catch( e => {
+	 
+	 console.error( 'Mensaje de recuperaJson.js. Algo salio mal. Error en la siguiente linea: ' ) ;
+	 console.log(e);
+	 });
+
+
+}//fin recuperaJson
+
 
 
    },//fin methods
