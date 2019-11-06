@@ -122,8 +122,9 @@ var app = new Vue({
 //por ejemplo, el evento 155 se correlaciona con idTablaEvento 79, que a su vez se corresponde reciprocamente con la tabla de sivigila escritorio EVENTOS_79
     
 //en este caso, se usará el id_tabla_evento capturado en la función nombre_evento para que trabaje el generador automatico de formularios
-
-  var datoSeleccionadoLista10 = this.id_tabla_evento;
+//¿lo convertimos en String?
+//debe ser String pues vue necesita declaración explicita de datos para que funcione igual al desarrollo hecho enteramente en javascript
+  var datoSeleccionadoLista10 = String(this.id_tabla_evento);
   
   document.getElementById("demo2").innerHTML = "Eligio Tabla Evento : " + datoSeleccionadoLista10;
 
@@ -200,6 +201,7 @@ var app = new Vue({
                         //validamos si el idTablaEvento es superior a lo seleccionado en la lista
                         //como la consulta está ordenada de manera ascendente, si el idTablaEvento es superior al seleccionado significa que llegamos al ultimo valor
                         //es decir, ya estamos en un nuevo idTablaEvento
+                        //comparamos String???. Debe haberse definidio datoSeleccionadoLista10 como String explicitamente en Vue o de lo contrario no funcionará
                         if(myJson14.registros[p14].idTablaEvento > datoSeleccionadoLista10){
                           //Validamos que sea el primer dato que se encuentra para no usar break
                           if(testigoUltimoDato10 == 0){
