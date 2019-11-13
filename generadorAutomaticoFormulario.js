@@ -1004,8 +1004,11 @@ generaFooter();
 
 
 /* función que genera el footer dinamicamente*/
+
+/*
 function generaFooter(){
     var newFooter= document.createElement("div"); 
+    newFooter.setAttribute('id','mi_footer');
     newFooter.setAttribute('class', 'd-sm-flex justify-content-center');
 
                                     // añade el elemento creado y su contenido al DOM 
@@ -1020,6 +1023,8 @@ function generaFooter(){
     newFooter.appendChild(newImg); //añade la caja de img al footer creado recientemente. 
 
 }
+
+*/
 
 function limpiaLocalStorage(){
 //Se ejecuta cada vez que se carga la página
@@ -1081,7 +1086,14 @@ fetch(url,{
 
 }//fin recuperaJson
 
+/*
+function borraDivFooter(){
+    //función para borrar el body
+    var myobj2 = document.getElementById("mi_footer");
+    myobj2.remove(); 
+       }
 
+*/
 
 
 

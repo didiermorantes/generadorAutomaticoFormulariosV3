@@ -7,7 +7,9 @@
     <title>Document</title>
 
       <!-- Script para el generador automático de formularios-->  
-    <script type="text/javascript" src="./generadorAutomaticoFormulario.js"></script>
+    <!-- <script type="text/javascript" src="./generadorAutomaticoFormulario.js"></script> -->
+
+
 
     				<!-- MI SCRIPT PARA RECUPERAR EL JSON CON INFORMACIÓN DE LISTAS Y DEMÁS
         LO COLOCAMOS EN LA CABECERA PARA QUE LO PRIMERO QUE SE HAGA SEA RECUPERAR EL JSON-->
@@ -23,9 +25,10 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
 
 
+
 </head>
 <!-- comenzamos::Body -->
-<body onload="limpiaLocalStorage();">
+<body>
 
     <header class="text-center">
         <img src="img/header.jpg" class="img-fluid" alt="Responsive image">
@@ -181,8 +184,8 @@ una mejore es indicarle a vue cual es el indice
   });
   </script>
 
-<!--modelo vue-->
-  <script src="modeloVUE.js"></script><!-- modelo VUE-->
+        <!--modelo vue al final, despues de que ya existan elementos del DOM -->
+        <script src="modeloVUE.js"></script><!-- modelo VUE-->
 
 
 

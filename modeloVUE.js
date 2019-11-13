@@ -179,7 +179,25 @@ var app = new Vue({
                   //conseguimos el valor del idTablaEvento con el valor del codigo evento. Convertimos a entero dicho valor
                   this.id_tabla_evento=parseInt(correlacionTablasEventos[index].idTablaEvento);
                   console.log("Mensaje de modeloVUE.js.Este es el idTablaEvento del codigo del evento seleccionado: ");
-                  console.log(this.id_tabla_evento);           
+                  console.log(this.id_tabla_evento);      
+                  
+                  //borramos el div padre solo si existe, es decir, solamente si ya se dibujo algun formulario
+
+                  if(document.getElementById("div_padre")==null){
+                    //no hace nada, pues no existe todavia el div_padre
+
+                  }
+                  else{
+                    this.borraDivPadre();
+                    if(document.getElementById("mi_footer")==null){
+                      //no hace nada, pues no existe todavia el div mi_footer
+                     }
+                     else{
+                      this.borraDivFooter();
+                     } 
+
+                  }
+              
 
                   //SI  NO EXISTE IDTABLAEVENTO ASOCIADO NO SE DIBUJARÁ LA TABLA, POR TANTO NO INVOCAMOS LA FUNCION PARA NO GENERAR ERRORES DE CONSOLA
 
@@ -338,6 +356,7 @@ var app = new Vue({
       //newParentDiv14.setAttribute('class', ' flex-sm-fill flex-md-fill justify-content-center flex-grow-1 ');
       newParentDiv14.setAttribute('class', 'd-flex flex-wrap justify-content-center ');
       newParentDiv14.setAttribute('style','justify-content: space-around');
+      newParentDiv14.setAttribute('id','div_padre');
       // añade el elemento creado y su contenido al DOM 
       var currentDiv14 = document.getElementById("div"); 
       document.body.insertBefore(newParentDiv14, currentDiv14); 
@@ -666,13 +685,15 @@ localStorage.totalListasDesplegables = contadorListaDesplegable;
 
 //generamos el footer dinamicamente
 
-generaFooter();
+app.generaFooter();
   
   
    });//fin  then function(myJson14)
   
   
    },//fin leerBDListaEspecificos
+
+
 limpiaLocalStorage: function(){
   //Se ejecuta cada vez que se carga la página
 localStorage.clear();//limpiamos el localStorage cada vez que se carga la página. Evitamos el error DOMException: "The quota has been exceeded."
@@ -680,8 +701,20 @@ window.localStorage.clear();
 //removemos el item especifico
 localStorage.removeItem('jsonAStringTransferido');
 //luego de limpiar procedemos a recuperar el Json de Nuevo
-recuperaJson();
+this.recuperaJson();
    },//fin limpiaLocalStorage
+
+   borraDivPadre: function(){
+//función para remover el div_padre
+var myobj = document.getElementById("div_padre");
+myobj.remove(); 
+   },
+
+   borraDivFooter: function(){
+    //función para borrar el body
+    var myobj2 = document.getElementById("mi_footer");
+    myobj2.remove(); 
+       },
 
 
   recuperaJson: function(){
@@ -731,30 +764,40 @@ fetch(url,{
 	 });
 
 
-}//fin recuperaJson
+},//fin recuperaJson
 
-
-
-   },//fin methods
-computed:{
-/* propiedad computada que genera el footer dinamicamente*/
-generaFooter:function(){
+generaFooter: function(){
   var newFooter= document.createElement("div"); 
+  
+  newFooter.setAttribute('id','mi_footer');
   newFooter.setAttribute('class', 'd-sm-flex justify-content-center');
+
 
                                   // añade el elemento creado y su contenido al DOM 
                                   var currentDiv = document.getElementById("div"); 
+                                  
                                   document.body.insertBefore(newFooter, currentDiv); 
 
+  
   var newImg = document.createElement("img");
   newImg.setAttribute('src', 'img/footer.jpg');
   newImg.setAttribute('class', 'img-fluid');
 
 
   newFooter.appendChild(newImg); //añade la caja de img al footer creado recientemente. 
+},//fin genera footer
 
-}//fin genera footer
+borraDivFooter:function(){
+     //función para borrar el body
+     var myobj2 = document.getElementById("mi_footer");
+     myobj2.remove(); 
+}//fin borraDivFooter
 
-}//fin computed
+   },//fin methods
+   
+created: function(){
+  //Created, ejecutara el codigo justo después de que toda la instancia de Vue que declaraste sea cargada
+    this.limpiaLocalStorage();
+    }//fin created
 
   });
