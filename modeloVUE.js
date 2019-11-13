@@ -699,16 +699,6 @@ app.generaFooter();
    },//fin leerBDListaEspecificos
 
 
-limpiaLocalStorage: function(){
-  //Se ejecuta cada vez que se carga la página
-localStorage.clear();//limpiamos el localStorage cada vez que se carga la página. Evitamos el error DOMException: "The quota has been exceeded."
-window.localStorage.clear();
-//removemos el item especifico
-localStorage.removeItem('jsonAStringTransferido');
-//luego de limpiar procedemos a recuperar el Json de Nuevo
-this.recuperaJson();
-   },//fin limpiaLocalStorage
-
    borraDivPadre: function(){
 //función para remover el div_padre
 var myobj = document.getElementById("div_padre");
@@ -794,17 +784,11 @@ generaFooter: function(){
   newFooter.appendChild(newImg); //añade la caja de img al footer creado recientemente. 
 },//fin genera footer
 
-borraDivFooter:function(){
-     //función para borrar el body
-     var myobj2 = document.getElementById("mi_footer");
-     myobj2.remove(); 
-}//fin borraDivFooter
 
    },//fin methods
    
 created: function(){
   //Created, ejecutara el codigo justo después de que toda la instancia de Vue que declaraste sea cargada
-    this.limpiaLocalStorage();
     //que se recupere el json apenas se cargue la pagina
     this.recuperaJson();
     }//fin created
