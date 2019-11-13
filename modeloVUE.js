@@ -7,18 +7,20 @@ LA CLAVE ES OBTENER EL JSON MEDIANTE EL SCRIPT recuperaJson.js, Y LUEGO ALMACENA
 LUEGO, modeloVUE.js , IMPORTAMOS EL OBJETO ALMACENADO EN LOCALSTORGAE Y ALMACENARLO EN EL OBJETO VUE
 
 */
+
+/*
 if (typeof(Storage) !== "undefined") {
 
 	//convertimos en string en JSON para poderlo intercambiar con los servidores
-	/*
+	
 
-	A common use of JSON is to exchange data to/from a web server.
+	//A common use of JSON is to exchange data to/from a web server.
 
-	When sending data to a web server, the data has to be a string.
+//	When sending data to a web server, the data has to be a string.
 
-	Convert a JavaScript object into a string with JSON.stringify().
+//	Convert a JavaScript object into a string with JSON.stringify().
 
-	*/
+	
 	var stringRecuperadoLocalStorage = localStorage.getItem('jsonAStringTransferido'); //recuperamos el json almacenado en localstorage
 
 	var stringConvertidoAObjeto=JSON.parse(stringRecuperadoLocalStorage); //Convertimos de nuevo el string en objeto javascript para ser manipulado
@@ -31,6 +33,9 @@ if (typeof(Storage) !== "undefined") {
 	
   document.getElementById("demo").innerHTML = "Lo sentimos, su navegador no soporta Web Storage...";
 }
+
+*/
+
 var app = new Vue({
     el: 'main',
     data: {
@@ -43,7 +48,7 @@ var app = new Vue({
       nombre_seleccionado_evento:null,
       nombre_seleccionado_ejemplo:null,
       id_tabla_evento:null,
-      jsonDatosINS:stringConvertidoAObjeto
+      jsonDatosINS:null
     },
     methods:{
 
@@ -730,9 +735,9 @@ fetch(url,{
 	return respuesta.json();
 })
 .then(datos=>{
-	console.log("Mensaje de recuperaJson. Los datos obtenidos por fetch son : ");
+	console.log("Mensaje de funcion Modelo VUE recuperaJson(). Los datos obtenidos por fetch son : ");
 	console.dir( datos );
-	console.log("Mensaje de recuperaJson. El tipo de datos del elemento recibido por fetch es : ");
+	console.log("Mensaje de funcion Modelo VUE recuperaJson(). El tipo de datos del elemento recibido por fetch es : ");
     console.log(typeof datos);
     
 
@@ -754,12 +759,14 @@ fetch(url,{
     
         //A workaround can be to stringify your object before storing it, and later parse it when you retrieve it:
 				  // Almacenamos en localStorage el json convertido a String
-	localStorage.setItem('jsonAStringTransferido', objetoConvertidoaString);
+  //localStorage.setItem('jsonAStringTransferido', objetoConvertidoaString);
+  
+  this.jsonDatosINS= datos;
 
 })
 .catch( e => {
 	 
-	 console.error( 'Mensaje de recuperaJson.js. Algo salio mal. Error en la siguiente linea: ' ) ;
+	 console.error( 'Mensaje de funcion Modelo VUE recuperaJson(). Algo salio mal. Error en la siguiente linea: ' ) ;
 	 console.log(e);
 	 });
 
@@ -798,6 +805,8 @@ borraDivFooter:function(){
 created: function(){
   //Created, ejecutara el codigo justo después de que toda la instancia de Vue que declaraste sea cargada
     this.limpiaLocalStorage();
+    //que se recupere el json apenas se cargue la pagina
+    this.recuperaJson();
     }//fin created
 
   });
