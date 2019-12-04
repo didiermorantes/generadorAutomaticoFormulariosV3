@@ -538,7 +538,7 @@ if(!isNaN(parseInt(ordenGrupoEnvoltorio))){//convertimos a entero el grupo, y lu
                               document.body.insertBefore(newDiv14, currentDiv14); 
                   
                   
-                          //creamos elemento de tipo input
+                          //creamos elemento de tipo input . k-input usando libreria kendo
                               var input14 = document.createElement("input");     
                               //establecemos el tipo texto
                               //input2.setAttribute('type', 'text'); --DESCOMENTARIAR SI SE QUIERE UN CONTENEDOR GENERICO DE TIPO TEXT
