@@ -89,38 +89,23 @@
     
     
 
-
+<!-- EJEMPLO DE LISTA DESPLEGABLE CON JSON
 
       <div class="form-group col-sm-2">
           <label for="codigo_ejemplo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Código de Ejemplo">{{ label_codigo_ejemplo }}</label>
           
           <select class="form-control m-input m-input--square" id="codigo_ejemplo" placeholder="Código de Ejemplo"  title="" v-model="codigo_seleccionado_ejemplo" v-on:change="nombre_ejemplo"
           data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Seleccione el código del ejemplo" data-original-title="Seleccione el ejemplo">
-  <!--
-  En caso de que queramos obtener los indices de nuestra iteración, lo podemos hacer pasando el indice como argumento a v-for (en este caso index):
+		
 
-    <li v-for="(tarea, indice) of tasks">
-        {{ indice }}: {{ tarea }}
-    </li>
-
-
-una mejore es indicarle a vue cual es el indice
-
-    <li v-for="(tarea, indice) of tasks" :key="indice">
-        {{ indice }}: {{ tarea }}
-    </li>
-
-    <option v-for="(codigo, indice) in modelo_evento_colectivo" :key="indice">{{ indice }}    {{ codigo.codigo_evento_sivigila }}</option>
-                      
-
--->					
-<!-- accedemos al modelo jsonCodigoEventosColectivos, la clave "eventos", que posee como valores los códigos y los nombres de los eventos -->
                     <option v-for="(codigoEjemplo) in jsonDatosINS.municipios" >{{ codigoEjemplo.codigo_municipio }}</option>
                       </select>
 
                       
         </div>
+-->
 
+<p align="right">Generador Autom&aacute;tico de formularios Versión 1.2</p>
         					<!--Elemento 2 -->
 					<div class="form-group col-sm-10">
               <label for="nombre_ejemplo" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nombre del Ejemplo">{{ label_nombre_ejemplo }}</label>
