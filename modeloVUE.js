@@ -522,8 +522,10 @@ if(!isNaN(parseInt(ordenGrupoEnvoltorio))){//convertimos a entero el grupo, y lu
 
 
 
-
-
+                             //creamos elemento de tipo H para que los titulos salgan de acuerdo al look and feel
+                             var inputH = document.createElement("h5"); 
+                             //establecemos el atributo de clase adecuado para el  look and feel
+                             inputH.setAttribute('class','text-danger');
 
                               
                           // alert(myJson2.campos[i2].nombreCampo);      --DESCOMENTARIAR SI SE QUIERE VER CADA NOMBRE DE CAMPO EN UN ALERT
@@ -531,8 +533,10 @@ if(!isNaN(parseInt(ordenGrupoEnvoltorio))){//convertimos a entero el grupo, y lu
                              // var newContent14 = document.createTextNode(myJson14.registros[i14].descripcion); //DESCOMENTAR SI NO SE USA EL ARREGLO ORDENADO
                               var newContent14 = document.createTextNode(arregloOrdenadoJson[i14].descripcion); 
                           
+                              //agregamos al elemento h3 el contenido traido del json(nombre del campo)
+                              inputH.appendChild(newContent14);
                               
-                              newDiv14.appendChild(newContent14); //añade texto al div creado.  
+                              newDiv14.appendChild(inputH); //añade contenido con h3 al div creado.  
                               // añade el elemento creado y su contenido al DOM 
                               var currentDiv14 = document.getElementById("div"); 
                               document.body.insertBefore(newDiv14, currentDiv14); 
@@ -642,12 +646,12 @@ if(ordenGrupo != 10){
                               newDiv14.setAttribute('style','border: thin solid black');
                               //asignamos un color a los div pares y otro a los impares
                                   if(i14%2==0){
-                                      //color azul turquesa a los pares
-                                      newDiv14.setAttribute('class','p-2 bg-info '+claseOrdenGrupo); //añadimos el orden flex
+                                      //color blanco a los pares
+                                      newDiv14.setAttribute('class','p-2 bg-white '+claseOrdenGrupo); //añadimos el orden flex
                                   }
                                   else{
-                                      //color amarillo a los impares
-                                      newDiv14.setAttribute('class','p-2 bg-secondary '+claseOrdenGrupo);//añadimos el orden flex
+                                      //color gris claro a los impares
+                                      newDiv14.setAttribute('class','p-2 bg-light '+claseOrdenGrupo);//añadimos el orden flex
                                   }
                   
                               newDiv14.appendChild(input14); //añade la caja de texto al div creado recientemente. 
