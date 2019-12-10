@@ -482,7 +482,10 @@ if(!isNaN(parseInt(ordenGrupoEnvoltorio))){//convertimos a entero el grupo, y lu
 
 
 
-
+                                    //creamos elemento de tipo H para que los titulos del envoltorio salgan de acuerdo al look and feel
+                                    var inputH5 = document.createElement("h5"); 
+                                    //establecemos el atributo de clase adecuado para el  look and feel
+                                    inputH5.setAttribute('class','text-danger');
 
                               
                           // alert(myJson2.campos[i2].nombreCampo);      --DESCOMENTARIAR SI SE QUIERE VER CADA NOMBRE DE CAMPO EN UN ALERT
@@ -490,8 +493,13 @@ if(!isNaN(parseInt(ordenGrupoEnvoltorio))){//convertimos a entero el grupo, y lu
                               // var newContentEnvoltorio = document.createTextNode(myJson14.registros[i14].envoltorio); //DESCOMENTAR SI NO SE USA EL ARREGLO ORDENADO 
                               var newContentEnvoltorio = document.createTextNode(arregloOrdenadoJson[i14].envoltorio); 
                           
+
+                                //agregamos al elemento h3 el contenido traido del json(nombre del campo)
+                                inputH5.appendChild(newContentEnvoltorio);
+                            
+
                               
-                              newDivEnvoltorio.appendChild(newContentEnvoltorio); //añade texto al div creado.  
+                              newDivEnvoltorio.appendChild(inputH5); //añade texto al div creado.  
                               // añade el elemento creado y su contenido al DOM 
                               var currentDivEnvoltorio = document.getElementById("div"); 
                               document.body.insertBefore(newDivEnvoltorio, currentDivEnvoltorio); 
@@ -523,9 +531,9 @@ if(!isNaN(parseInt(ordenGrupoEnvoltorio))){//convertimos a entero el grupo, y lu
 
 
                              //creamos elemento de tipo H para que los titulos salgan de acuerdo al look and feel
-                             var inputH = document.createElement("h5"); 
+                             var inputH6 = document.createElement("h6"); 
                              //establecemos el atributo de clase adecuado para el  look and feel
-                             inputH.setAttribute('class','text-danger');
+                             inputH6.setAttribute('class','text-dark');
 
                               
                           // alert(myJson2.campos[i2].nombreCampo);      --DESCOMENTARIAR SI SE QUIERE VER CADA NOMBRE DE CAMPO EN UN ALERT
@@ -534,9 +542,9 @@ if(!isNaN(parseInt(ordenGrupoEnvoltorio))){//convertimos a entero el grupo, y lu
                               var newContent14 = document.createTextNode(arregloOrdenadoJson[i14].descripcion); 
                           
                               //agregamos al elemento h3 el contenido traido del json(nombre del campo)
-                              inputH.appendChild(newContent14);
+                              inputH6.appendChild(newContent14);
                               
-                              newDiv14.appendChild(inputH); //añade contenido con h3 al div creado.  
+                              newDiv14.appendChild(inputH6); //añade contenido con h3 al div creado.  
                               // añade el elemento creado y su contenido al DOM 
                               var currentDiv14 = document.getElementById("div"); 
                               document.body.insertBefore(newDiv14, currentDiv14); 
