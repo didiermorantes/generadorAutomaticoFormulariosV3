@@ -580,6 +580,9 @@ lista14.setAttribute('onchange', 'correlacionarListaDesplegable()');
 
 
 
+
+
+
                               input14.setAttribute('type', arregloOrdenadoJson[i14].tipo);
 
 
@@ -613,6 +616,14 @@ lista14.setAttribute('onchange', 'correlacionarListaDesplegable()');
                               input14.setAttribute('class', 'd-sm-flex');
 
 
+//VALIDAMOS CAMPO COMO TIPO FECHA
+//LE AGREGAMOS EL LOOK AND FEEL DE LA LIBRERIA KENDO
+if(arregloOrdenadoJson[i14].tipo=="DATE" ){
+  //establecemos la clase calendario
+  input14.setAttribute('class', 'calendario');
+  //quitamos el tipo DATE para que funcione el datepicker de kendo
+   input14.removeAttribute('type');
+}
 
 
 //

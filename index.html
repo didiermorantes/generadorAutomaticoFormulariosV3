@@ -26,11 +26,17 @@
 
 
           <!-- KENDO -->
-    <link href="kendo/styles/kendo.bootstrap.min.css" rel="stylesheet">
-    <link href="kendo/styles/kendo.common-bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="kendo/styles/kendo.default.mobile.min.css" />
-    <link rel="stylesheet" href="kendo/styles/kendo.common.min.css" />
-    <link rel="stylesheet" href="kendo/styles/kendo.default.min.css" />
+          <link href="kendo/styles/kendo.bootstrap.min.css" rel="stylesheet">
+          <link href="kendo/styles/kendo.common-bootstrap.min.css" rel="stylesheet">
+          <link rel="stylesheet" href="kendo/styles/kendo.default.mobile.min.css" />
+          <link rel="stylesheet" href="kendo/styles/kendo.common.min.css" />
+          <link rel="stylesheet" href="kendo/styles/kendo.default.min.css" />
+      
+      
+          <script src="kendo/js/jquery.min.js"></script>
+          <script src="kendo/js/kendo.all.min.js"></script>
+
+
 <!-- estilo personalizado-->
     <link rel="stylesheet" type="text/css" href="css/base.css">
 <!-- fuente poppins-->
@@ -172,11 +178,12 @@ una mejore es indicarle a vue cual es el indice
 
 </main>
 
-<!-- HABILITMOS TOOLTIP Y POPOVER CON JQUERY-->
+<!-- HABILITMOS TOOLTIP Y POPOVER Y DATEPICKER KENDO CON JQUERY-->
 <script>
   $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();  
     $('[data-toggle="popover"]').popover();  
+    $('.calendario').kendoDatePicker();
   });
   </script>
 

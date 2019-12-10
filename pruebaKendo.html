@@ -34,12 +34,19 @@
 
                 <h4 style="margin-top: 2em;">Add to archive mail from:</h4>
                 <input id="monthpicker" value="November 2011" title="monthpicker" style="width: 100%" />
+
+
+                <h4> Prueba de Clase Datepicker </h4>
+                <input class="calendario" value="10/10/2011" title="datepicker" style="width: 100%" />
+
             </div>
 
         <script>
             $(document).ready(function() {
                 // create DatePicker from input HTML element
                 $("#datepicker").kendoDatePicker();
+
+                $(".calendario").kendoDatePicker();
 
                 $("#monthpicker").kendoDatePicker({
                     // defines the start view
