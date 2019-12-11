@@ -277,7 +277,7 @@ var app = new Vue({
     // console.log('La cantidad de elementos que tiene el json en el objeto "personas" es : '+datoLeido);    ---DESCOMENTARIAR SI SE USA EL JSON PERSONAS
      console.log('2. La cantidad de elementos que tiene el json en el objeto "registros" es : '+datoLeido14);
      //stringify convierte el objeto en json para ser visualizado por el alert, o si no  solo se observa object object
-     alert(JSON.stringify(myJson14));
+    // SI alert(JSON.stringify(myJson14));
    
      /* PROCESO PARA DETERMINAR LA TABLA DESEADA , DE ACUERDO A LA LISTA DESPLEGABLE */
      console.log('3. El id del evento elegido es : '+datoSeleccionadoLista10);
@@ -344,16 +344,16 @@ var app = new Vue({
                   console.log('La cantidad de elementos que tiene el json procesado en el objeto "registros" en la posicion '+datoSeleccionadoLista10+' es : '+datoLeidoJsonProcesado10);
                   
                          //stringify convierte el objeto en json para ser visualizado por el alert, o si no  solo se observa object object
-                   alert(JSON.stringify(myJson14.registros[myJsonProcesado10]));
-                   alert('La cantidad de elementos que tiene el json procesado en el objeto "registros" en la posicion  '+datoSeleccionadoLista10+' es : '+datoLeidoJsonProcesado10);
+                   //SI alert(JSON.stringify(myJson14.registros[myJsonProcesado10]));
+                  // SI alert('La cantidad de elementos que tiene el json procesado en el objeto "registros" en la posicion  '+datoSeleccionadoLista10+' es : '+datoLeidoJsonProcesado10);
 
                    //tenemos que extraer el id del primer elemento de la tabla seleccionada para comenzar a pintar desde ahi. El ordenamiento en la consulta cambia todo
                   
                    console.log('El id del primer valor obtenido de la tabla segun lista desplegable es  '+myJsonProcesado10);
-                   alert('El id del primer valor obtenido de la tabla segun lista desplegable es  '+idMyJsonProcesado10);
+                   // SI alert('El id del primer valor obtenido de la tabla segun lista desplegable es  '+idMyJsonProcesado10);
 
                    console.log('El id del ultimo valor obtenido de la tabla segun lista desplegable es  '+myJsonProcesado12);
-                   alert('El id del ultimo valor obtenido de la tabla segun lista desplegable es  '+idMyJsonProcesado12);
+                   // SI alert('El id del ultimo valor obtenido de la tabla segun lista desplegable es  '+idMyJsonProcesado12);
 
 
 

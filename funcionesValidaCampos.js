@@ -67,7 +67,22 @@ function validaFechaSuperior(miCampo){
 
  
     if( fechaFormulario > currentTime ){
-        alert('La fecha digitada no puede ser mayor a la fecha del sistema.');
+        //alert('La fecha digitada no puede ser mayor a la fecha del sistema.');
+        $.confirm({
+            title: 'Alerta',
+            content: 'La fecha digitada no puede ser mayor a la fecha del sistema.',
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
         miCampo.value=currentTime;
         miCampo.focus();
                 //retornamos 1 indicando que la fecha es superior
@@ -85,8 +100,40 @@ function validaFechaSuperior(miCampo){
 function valida_si_no(miCampo){
 
     if(miCampo.value<0 || miCampo.value>2){
-        alert('Digite un valor entre 1 y 2.');
-        alert('1 Si.\n2 No.');
+        //alert('Digite un valor entre 1 y 2.');
+        //alert('1 Si.\n2 No.');
+
+        $.confirm({
+            title: 'Alerta',
+            content: 'Digite un valor entre 1 y 2.',
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
+        $.confirm({
+            title: 'Alerta',
+            content: '1 Si.\n2 No.',
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
+
         
         miCampo.value="Diligencie Datos Válidos.";
         miCampo.focus();
@@ -100,8 +147,40 @@ function valida_si_no(miCampo){
 
 function valida_1_2(miCampo,miMensaje){
     if(miCampo.value<0 || miCampo.value>2){
-        alert('Digite un valor entre 1 y 2.');
-        alert(miMensaje);
+        //alert('Digite un valor entre 1 y 2.');
+        //alert(miMensaje);
+
+        $.confirm({
+            title: 'Alerta',
+            content: 'Digite un valor entre 1 y 2.',
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
+
+        $.confirm({
+            title: 'Alerta',
+            content: miMensaje,
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
         
         miCampo.value="Diligencie Datos Válidos.";
         miCampo.focus();
@@ -118,8 +197,42 @@ function valida_1_2(miCampo,miMensaje){
 
 function valida_1_3(miCampo,miMensaje){
     if(miCampo.value<0 || miCampo.value>3){
-        alert('Digite un valor entre 1 y 3.');
-        alert(miMensaje);
+        //alert('Digite un valor entre 1 y 3.');
+        //alert(miMensaje);
+
+
+        $.confirm({
+            title: 'Alerta',
+            content: 'Digite un valor entre 1 y 3.',
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
+
+        $.confirm({
+            title: 'Alerta',
+            content: miMensaje,
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
+
         
         miCampo.value="Diligencie Datos Válidos.";
         miCampo.focus();
@@ -918,7 +1031,24 @@ totalDatoLeido18= localStorage.totalElementosJson;
 
      //validamos si dejan vacio el campo
         if ( miListaTipoCancerMenor18.value.length == 0 ||  miListaTipoCancerMenor18.value  =='' ||  miListaTipoCancerMenor18.value ==null || /^\\s+$/.test( miListaTipoCancerMenor18.value )) {
-            alert('Diligencie Datos.No se pueden dejar campos vacios en tipo cáncer.');
+            //alert('Diligencie Datos.No se pueden dejar campos vacios en tipo cáncer.');
+
+            $.confirm({
+                title: 'Alerta',
+                content: 'Diligencie Datos.No se pueden dejar campos vacios en tipo cáncer.',
+                icon: 'fa fa-warning',
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    close: {
+                        text: 'Aceptar',
+                        btnClass: 'btn-red',
+                        action: function(){
+                        }
+                    }
+                }
+            });
+            
             miListaTipoCancerMenor18.focus();
             miListaTipoCancerMenor18.value='Diligencie datos';
         }//fin if
@@ -1010,13 +1140,44 @@ var miInit = { method: 'GET',
                       //DESPUES DE OBTENER LOS DATOS Y SABER QUE NO GENERÓ ERROR, VALIDAMOS SI LO QUE SE ESCRIBA EN LA CAJA NUMBER ESTÁ DENTRO DEL RANGO
                      //convierto a entero los datos tipo texto para validacion
     if((miListaTipoCancerMenor18.value<1) || (miListaTipoCancerMenor18.value>totalDatoLeido18)){
-        alert('Digite un valor entre 1 y '+ totalDatoLeido18);
+        //alert('Digite un valor entre 1 y '+ totalDatoLeido18);
+
+        $.confirm({
+            title: 'Alerta',
+            content: 'Digite un valor entre 1 y '+ totalDatoLeido18,
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });   
         var mensajeAlerta="";
         mensajeAlerta+="1: Leucemia Linfoide Aguda.\n 2: Leucemia Mieloide Aguda.\n 3: Otras Leucemias.\n 4: Linfomas y Neoplasias Reticuloendoteliales.\n 5: Tumores del Sistema Nervioso Central.\n";
         mensajeAlerta+="6: Neuroblastoma y otros tumores de celulas nerviosas periféricas.\n 7: Retinoblastoma.\n 8: Tumores Renales.\n 9: Tumores Hepáticos.\n 10: Tumores Óseos Malignos.\n";
         mensajeAlerta+="11: Sarcomas de Tejidos Blandos y Extraóseos.\n 12: Tumores Germinales, Trofoblásticos, y otros Gonadales.\n 13: Tumores Epiteliales Malignos y Melanoma.\n 14: Otras Neoplasias Malignas No Especificadas.\n";
-        alert(mensajeAlerta);
+       // alert(mensajeAlerta);
 
+        $.confirm({
+            title: 'Alerta',
+            content: mensajeAlerta,
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });   
 
         miListaTipoCancerMenor18.focus();// no podemos dejar el foco en el campo porque volveria 
         miListaTipoCancerMenor18.value=1;
@@ -1045,7 +1206,23 @@ var miInit = { method: 'GET',
 
       } else {
         // Sorry! No Web Storage support..
-        alert("Lo siento. Su navegador no soporta Web Storage. Intente con otro navegador");
+       // alert("Lo siento. Su navegador no soporta Web Storage. Intente con otro navegador");
+        $.confirm({
+            title: 'Alerta',
+            content: 'Lo siento. Su navegador no soporta Web Storage. Intente con otro navegador.',
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
+
       }//else web storage
 
 
