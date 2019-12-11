@@ -568,7 +568,10 @@ if(!isNaN(parseInt(ordenGrupoEnvoltorio))){//convertimos a entero el grupo, y lu
 //HACEMOS LA VALIDACION ANTES DE AGREGAR EL INPUT TYPE
 
 if((arregloOrdenadoJson[i14].tipo=="NUMBER") && (arregloOrdenadoJson[i14].valorPorDefecto =="listaDesplegable")){
-//aumentamos en uno el contador de listas desplegables
+
+/* CREACION DE LISTAS DESPLEGABLES CON JAVASCRIPT PURO
+
+  //aumentamos en uno el contador de listas desplegables
 contadorListaDesplegable=contadorListaDesplegable+1;
 //si se cumplen estas dos condiciones, dibujamos un campo tipo <select> lista desplegable auxiliar,que luego se poblará dinámicamente
 var lista14 = document.createElement("select");
@@ -579,6 +582,11 @@ lista14.id= "lista"+contadorListaDesplegable;
 lista14.setAttribute('class', 'd-sm-flex');
 //Agregamos evento
 lista14.setAttribute('onchange', 'correlacionarListaDesplegable()');
+
+*/
+
+
+
 }
 
 
@@ -635,6 +643,11 @@ if(arregloOrdenadoJson[i14].tipo=="DATE" ){
 }
 
 
+
+  
+
+
+
 //
 //ASIGNAMOS EL ORDEN AL FLEX DE ACUERDO AL ORDEN DE GRUPO QUE TENGA EN LA TABLA, SI NO TIENE, NO ASIGNAMOS ORDEN Y SE MUESTRA SEGÚN SE VAYA GENERANDO
 //EN LA TABLA ordenGrupo NO PUEDE SER NULO Y TIENE UN VALOR POR DEFECTO DE 10   
@@ -687,7 +700,8 @@ if(ordenGrupo != 10){
 
                           //AGREGAMOS EL CAMPO ESPECIAL AL DIV EN CASO DE EXISTIR LISTAS DESPLEGABLES
                           if((arregloOrdenadoJson[i14].tipo=="NUMBER") && (arregloOrdenadoJson[i14].valorPorDefecto =="listaDesplegable")){
-                              newDiv14.appendChild(lista14);
+                              
+                            //newDiv14.appendChild(lista14);
                           }
 
 

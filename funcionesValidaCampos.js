@@ -247,6 +247,60 @@ function valida_1_3(miCampo,miMensaje){
 
 }
 
+
+function valida_1_12(miCampo,miMensaje){
+    if(miCampo.value<0 || miCampo.value>12){
+        //alert('Digite un valor entre 1 y 12.');
+        //alert(miMensaje);
+
+
+        $.confirm({
+            title: 'Alerta',
+            content: 'Digite un valor entre 1 y 12.',
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
+
+        $.confirm({
+            title: 'Alerta',
+            content: miMensaje,
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
+
+        
+        miCampo.value="Diligencie Datos Válidos.";
+        miCampo.focus();
+                        //retornamos 1 indicando que los datos no estaban en el rango
+                        return 1;
+    }
+    else{
+        //De lo contrario retornamos cero
+        return 0;
+
+    }
+
+}
+
+
 /*
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -278,6 +332,49 @@ function validaTipoCancer(){
 
 
 }//fin validaTipoCancer
+
+
+
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA TIPO CÁNCER  _ MENOR 18
+
+*/
+
+
+function validaTipoCancerMenor18(){
+
+    var miTipoCancerM = document.getElementById('TIPO_CA');
+    
+
+    var miTextoM="";
+    miTextoM+="1: Leucemia Linfoide Aguda.\n 2: Leucemia Mieloide Aguda.\n 3: Otras Leucemias.\n 4: Linfomas y Neoplasias Reticuloendoteliales.\n 5: Tumores del Sistema Nervioso Central.\n";
+    miTextoM+="6: Neuroblastoma y otros tumores de celulas nerviosas periféricas.\n 7: Retinoblastoma.\n 8: Tumores Renales.\n 9: Tumores Hepáticos.\n 10: Tumores Óseos Malignos.\n";
+    miTextoM+="11: Sarcomas de Tejidos Blandos y Extraóseos.\n 12: Tumores Germinales, Trofoblásticos, y otros Gonadales.\n 13: Tumores Epiteliales Malignos y Melanoma.\n 14: Otras Neoplasias Malignas No Especificadas.\n";
+    var miValidaVacioM =1;//inicializamos las variables en 1. Su valor cambiará si se ingresan datos validos
+    var miValidaValorM=1;//inicializamos las variables en 1. Su valor cambiará si se ingresan datos validos
+    //validamos campo vacio
+    miValidaVacioM=validaVacio(miTipoCancerM,miTextoM);
+
+    //validamos valor entre 1 y 3
+    miValidaValorM=valida_1_12(miTipoCancerM,miTextoM);
+
+
+    /*
+    //si ambas validaciones retornan cero significa que los datos ingresados son validos
+    if(miValidaVacioM==0 && miValidaValorM==0){
+//invocamos la función para habilitar los campos de acuerdo a la seleccion
+        habilitaCamposTipoCancer(miTipoCancerM);
+    
+    }//fin if
+
+
+*/
+
+}//fin validaTipoCancerMenor18
+
 
 
 
@@ -987,6 +1084,8 @@ function validaFCH_SEG_TR(){
 */
 
 
+/*  FUNCION PARA POBLAR LISTA DESPLEGABLE CON JAVASCRIPT PURO
+
 function poblarListaTipoCancerMenor18(){
 
 
@@ -1228,11 +1327,19 @@ var miInit = { method: 'GET',
 
 
 }
+
+
+
+*/
+
+
 /*
 
 -----------------------------------------------------------------------------------------------------------------------------------------------
 
 */
+
+/*  FUNCION PARA CORRELACIONAR LISTA DESPLEGABLE CON JAVASCRIPT PURO
 
 function correlacionarListaDesplegable(){
 
@@ -1242,6 +1349,10 @@ function correlacionarListaDesplegable(){
     miListaTipoCancerMenor18.value=miListaTipoCancerMenor18_datos.value;
 
 }
+
+
+*/
+
 
 /*
 
