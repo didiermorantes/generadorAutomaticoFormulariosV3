@@ -18,7 +18,7 @@
     
     <!-- BOOTSTRAP-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <!--  distribucion desarrollador vue. indcluye advertencias utiles. Cambiar a versión de producción después -->
@@ -35,6 +35,14 @@
       
           <script src="kendo/js/jquery.min.js"></script>
           <script src="kendo/js/kendo.all.min.js"></script>
+
+          <!-- JQUERY CONFIRM-->
+          <!-- ONLINE
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+          -->
+          <link rel="stylesheet" href="jquery-confirm-v3.3.4/dist/jquery-confirm.min.css">
+          <script src="jquery-confirm-v3.3.4/dist/jquery-confirm.min.js"></script>
 
 
 <!-- estilo personalizado-->
@@ -178,18 +186,29 @@ una mejore es indicarle a vue cual es el indice
 
 </main>
 
-<!-- HABILITMOS TOOLTIP Y POPOVER Y DATEPICKER KENDO CON JQUERY-->
-<script>
-  $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();  
-    $('[data-toggle="popover"]').popover();  
-    $('.calendario').kendoDatePicker();
-  });
-  </script>
+
 
         <!--modelo vue al final, despues de que ya existan elementos del DOM -->
         <script src="modeloVUE.js"></script><!-- modelo VUE-->
 
+
+
+<!-- HABILITMOS TOOLTIP Y POPOVER Y DATEPICKER KENDO CON JQUERY-->
+<script>
+  //es necesario ingresar con el mismo protocolo (http o https) para evitar error de cross site
+  $(document).ready(function(){
+    $('.calendarioKendo').kendoDatePicker(
+      {
+// mostramos el formato adecuado
+                    format: "dd/MM/yyyy"
+
+}
+);
+    $('[data-toggle="tooltip"]').tooltip();  
+    $('[data-toggle="popover"]').popover();  
+    
+  });
+  </script>
 
 
     <!-- las funciones de validación de campos deben ubicarse al final, de manera que los objetos ya se encuentren en el DOM-->

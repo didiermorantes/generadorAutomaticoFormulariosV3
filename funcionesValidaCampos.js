@@ -9,6 +9,24 @@ function validaVacio(miCampo,miMensaje){
     
     if ( miCampo.value.length == 0 ||  miCampo.value  =='' ||  miCampo.value ==null || /^\\s+$/.test( miCampo.value )) {
         alert('Diligencie Datos.No se pueden dejar campos vacios.');
+        $.confirm({
+            title: 'Alerta',
+            content: 'Diligencie Datos.No se pueden dejar campos vacios.',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                tryAgain: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                },
+                close: function () {
+                }
+            }
+        });
+
+
         alert(miMensaje);
         miCampo.value='Diligencie datos Válidos.';
         miCampo.focus();

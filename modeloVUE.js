@@ -1,6 +1,10 @@
 //directiva para usar vue dev tools en chrome
 Vue.config.devtools = true;
 
+       
+      
+      
+
 
 /*
 LA CLAVE ES OBTENER EL JSON MEDIANTE EL SCRIPT recuperaJson.js, Y LUEGO ALMACENAR EL RESULTADO EN LOCALSTORAGE
@@ -620,9 +624,14 @@ lista14.setAttribute('onchange', 'correlacionarListaDesplegable()');
 //LE AGREGAMOS EL LOOK AND FEEL DE LA LIBRERIA KENDO
 if(arregloOrdenadoJson[i14].tipo=="DATE" ){
   //establecemos la clase calendario
-  input14.setAttribute('class', 'calendario');
+  input14.setAttribute('class', 'calendarioKendo');
+
+  //establecemoes el ancho automatico
+   input14.setAttribute('style', 'width: auto');
+   
   //quitamos el tipo DATE para que funcione el datepicker de kendo
    input14.removeAttribute('type');
+
 }
 
 
@@ -711,8 +720,9 @@ else{
   // Store
 localStorage.totalListasDesplegables = contadorListaDesplegable;
 
+//generamos datePicker dinamicamente
+app.generaDatePicker();
 //generamos el footer dinamicamente
-
 app.generaFooter();
   
   
@@ -807,6 +817,19 @@ generaFooter: function(){
   newFooter.appendChild(newImg); //añade la caja de img al footer creado recientemente. 
 },//fin genera footer
 
+generaDatePicker: function(){
+  //aplicamos el datePicker a la clase calendarioKendo
+$('.calendarioKendo').kendoDatePicker(
+{
+// mostramos el formato adecuado
+                    format: "dd/MM/yyyy"
+
+}
+
+  );
+
+}
+
 
    },//fin methods
    
@@ -814,6 +837,10 @@ created: function(){
   //Created, ejecutara el codigo justo después de que toda la instancia de Vue que declaraste sea cargada
     //que se recupere el json apenas se cargue la pagina
     this.recuperaJson();
+
+  //generamos los datepicker después de haber construido todo
+  this.generaDatePicker();
+
     }//fin created
 
   });
