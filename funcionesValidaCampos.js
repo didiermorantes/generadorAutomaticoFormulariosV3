@@ -8,26 +8,39 @@ FUNCIONES GENÉRICAS
 function validaVacio(miCampo,miMensaje){
     
     if ( miCampo.value.length == 0 ||  miCampo.value  =='' ||  miCampo.value ==null || /^\\s+$/.test( miCampo.value )) {
-        alert('Diligencie Datos.No se pueden dejar campos vacios.');
+        //alert('Diligencie Datos.No se pueden dejar campos vacios.');
         $.confirm({
             title: 'Alerta',
             content: 'Diligencie Datos.No se pueden dejar campos vacios.',
+            icon: 'fa fa-warning',
             type: 'red',
             typeAnimated: true,
             buttons: {
-                tryAgain: {
+                close: {
                     text: 'Aceptar',
                     btnClass: 'btn-red',
                     action: function(){
                     }
-                },
-                close: function () {
+                }
+            }
+        });
+        $.confirm({
+            title: 'Alerta',
+            content: miMensaje,
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
                 }
             }
         });
 
-
-        alert(miMensaje);
+        //alert(miMensaje);
         miCampo.value='Diligencie datos Válidos.';
         miCampo.focus();
         //retornamos 1 indicando que el campo estaba vacio
