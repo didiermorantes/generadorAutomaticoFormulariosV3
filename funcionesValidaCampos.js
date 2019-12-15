@@ -196,7 +196,7 @@ function valida_1_2(miCampo,miMensaje){
 }
 
 function valida_1_3(miCampo,miMensaje){
-    if(miCampo.value<0 || miCampo.value>3){
+    if(miCampo.value<0 || miCampo.value>3 || isNaN(miCampo.value)){
         //alert('Digite un valor entre 1 y 3.');
         //alert(miMensaje);
 
@@ -249,7 +249,7 @@ function valida_1_3(miCampo,miMensaje){
 
 
 function valida_1_12(miCampo,miMensaje){
-    if(miCampo.value<0 || miCampo.value>12){
+    if(miCampo.value<0 || miCampo.value>12 || isNaN(miCampo.value)){
         //alert('Digite un valor entre 1 y 12.');
         //alert(miMensaje);
 
