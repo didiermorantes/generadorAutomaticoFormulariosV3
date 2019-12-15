@@ -58,10 +58,10 @@ var app = new Vue({
 
       		
       nombre_ejemplo: function(){
-        console.log("Mensaje de modeloVUE.js. funciona el evento v-on:change del elemento html <select> con id=codigo_ejemplo ");
+        // SI console.log("Mensaje de modeloVUE.js. funciona el evento v-on:change del elemento html <select> con id=codigo_ejemplo ");
         var codigoEjemploLocal= this.codigo_seleccionado_ejemplo;
-        console.log("Mensaje de modeloVUE.js. Este es el código del ejemplo: ");
-        console.log(codigoEjemploLocal);
+        // SI console.log("Mensaje de modeloVUE.js. Este es el código del ejemplo: ");
+        // SIconsole.log(codigoEjemploLocal);
   
           /* 
             BUSCAR CLAVES EN JSON
@@ -106,15 +106,15 @@ var app = new Vue({
                   indexEj = municipiosEj.findIndex(key => key.codigo_municipio==codigoEjemploLocal);
               
                   //mostramos en consola el índice
-                  console.log("Mensaje de modeloVUE.js.Este es el índice del ejemplo: ");
-                  console.log(indexEj);
+                  // SI console.log("Mensaje de modeloVUE.js.Este es el índice del ejemplo: ");
+                  // SI console.log(indexEj);
 
                   
                   //asignamos a la variable del modelo nombre_seleccionado_ejemplo, el valor obtenido de explorar el arreglo del modelo Json
                   //con  el indice obtenido en el paso anterior. Con ese indice podemos obtener el nombre del evento
                   this.nombre_seleccionado_ejemplo=municipiosEj[indexEj].nombre_municipio;
-                  console.log("Mensaje de modeloVUE.js.Este es el nombre del ejemplo: ");
-                  console.log(this.nombre_seleccionado_ejemplo);
+                  // SI console.log("Mensaje de modeloVUE.js.Este es el nombre del ejemplo: ");
+                  // SI console.log(this.nombre_seleccionado_ejemplo);
 
        
 
@@ -125,10 +125,10 @@ var app = new Vue({
       },//fin funcion nombre_ejemplo
 		
       nombre_evento: function(){
-        console.log("Mensaje de modeloVUE.js. funciona el evento v-on:change del elemento html <select> con id=codigo_evento ");
+        // SI console.log("Mensaje de modeloVUE.js. funciona el evento v-on:change del elemento html <select> con id=codigo_evento ");
         var codigoEventoLocal= this.codigo_seleccionado_evento;
-        console.log("Mensaje de modeloVUE.js. Este es el código del evento: ");
-        console.log(codigoEventoLocal);
+        // SI console.log("Mensaje de modeloVUE.js. Este es el código del evento: ");
+        // SI console.log(codigoEventoLocal);
   
           /* 
             BUSCAR CLAVES EN JSON
@@ -174,21 +174,21 @@ var app = new Vue({
                   index = eventos.findIndex(key => key.codigoEvento==codigoEventoLocal);
               
                   //mostramos en consola el índice
-                  console.log("Mensaje de modeloVUE.js.Este es el índice del evento: ");
-                  console.log(index);
+                 // SI  console.log("Mensaje de modeloVUE.js.Este es el índice del evento: ");
+                  // SI console.log(index);
 
                   
                   //asignamos a la variable del modelo nombre_seleccionado_evento, el valor obtenido de explorar el arreglo del modelo Json
                   //con  el indice obtenido en el paso anterior. Con ese indice podemos obtener el nombre del evento
                   this.nombre_seleccionado_evento=eventos[index].nombreEvento;
-                  console.log("Mensaje de modeloVUE.js.Este es el nombre del evento: ");
-                  console.log(this.nombre_seleccionado_evento);
+                 // SI console.log("Mensaje de modeloVUE.js.Este es el nombre del evento: ");
+                  // SI console.log(this.nombre_seleccionado_evento);
 
 
                   //conseguimos el valor del idTablaEvento con el valor del codigo evento. Convertimos a entero dicho valor
                   this.id_tabla_evento=parseInt(correlacionTablasEventos[index].idTablaEvento);
-                  console.log("Mensaje de modeloVUE.js.Este es el idTablaEvento del codigo del evento seleccionado: ");
-                  console.log(this.id_tabla_evento);      
+                  //SI console.log("Mensaje de modeloVUE.js.Este es el idTablaEvento del codigo del evento seleccionado: ");
+                  // SI console.log(this.id_tabla_evento);      
                   
                   //borramos el div padre solo si existe, es decir, solamente si ya se dibujo algun formulario
 
@@ -270,17 +270,17 @@ var app = new Vue({
      datoLeido14=Object.keys(myJson14.registros).length; //esto arroja la cantidad de registros TOTAL que tiene el json
      
     //contenido del myJson14
-     console.log('1. El json mostrado por consola es: ');
+     // SI console.log('1. El json mostrado por consola es: ');
        //luego de obtener la respuesta  con el contenido del json, lo mostramos en consola. Podemos mostrarlo sin ningún tratamiento ya que la consola permite ver objetos
-       console.log(myJson14);
+      // SI  console.log(myJson14);
 
     // console.log('La cantidad de elementos que tiene el json en el objeto "personas" es : '+datoLeido);    ---DESCOMENTARIAR SI SE USA EL JSON PERSONAS
-     console.log('2. La cantidad de elementos que tiene el json en el objeto "registros" es : '+datoLeido14);
+     // SI console.log('2. La cantidad de elementos que tiene el json en el objeto "registros" es : '+datoLeido14);
      //stringify convierte el objeto en json para ser visualizado por el alert, o si no  solo se observa object object
     // SI alert(JSON.stringify(myJson14));
    
      /* PROCESO PARA DETERMINAR LA TABLA DESEADA , DE ACUERDO A LA LISTA DESPLEGABLE */
-     console.log('3. El id del evento elegido es : '+datoSeleccionadoLista10);
+    // SI  console.log('3. El id del evento elegido es : '+datoSeleccionadoLista10);
                   myJsonProcesado10 =myJson14.registros[datoSeleccionadoLista10]; 
           
 
@@ -298,8 +298,8 @@ var app = new Vue({
                                   //encontramos el indice de dicho id
                                   myJsonProcesado10 = p14;
                                   
-                                  console.log("Este es el id del primer dato que coincide con lo seleccionado en la lista: "+idMyJsonProcesado10);
-                                  console.log("Este es el indice del ciclo que coincide con lo seleccionado en la lista "+myJsonProcesado10);
+                                  // SI console.log("Este es el id del primer dato que coincide con lo seleccionado en la lista: "+idMyJsonProcesado10);
+                                 // SI console.log("Este es el indice del ciclo que coincide con lo seleccionado en la lista "+myJsonProcesado10);
                                   //cambiamos el valor del testigo para que nunca vuelva a entrar aqui
                                   testigoPrimerDato10=1;
                               }//cierre if
@@ -321,8 +321,8 @@ var app = new Vue({
                               //encontramos el indice de dicho id
                               myJsonProcesado12 = p14;
                               
-                              console.log("Este es el id del ultimo dato que coincide con lo seleccionado en la lista (ya no es de la tabla seleccionada): "+idMyJsonProcesado12);
-                              console.log("Este es el indice del ciclo que coincide con lo seleccionado en la lista "+myJsonProcesado12);
+                              // SI console.log("Este es el id del ultimo dato que coincide con lo seleccionado en la lista (ya no es de la tabla seleccionada): "+idMyJsonProcesado12);
+                              // SI console.log("Este es el indice del ciclo que coincide con lo seleccionado en la lista "+myJsonProcesado12);
                               //cambiamos el valor del testigo para que nunca vuelva a entrar aqui
                               testigoUltimoDato10=1;
                           }//cierre if
@@ -341,7 +341,7 @@ var app = new Vue({
                           
                   datoLeidoJsonProcesado10 = Object.keys(myJson14.registros[myJsonProcesado10]).length;
                           
-                  console.log('La cantidad de elementos que tiene el json procesado en el objeto "registros" en la posicion '+datoSeleccionadoLista10+' es : '+datoLeidoJsonProcesado10);
+                  // SI console.log('La cantidad de elementos que tiene el json procesado en el objeto "registros" en la posicion '+datoSeleccionadoLista10+' es : '+datoLeidoJsonProcesado10);
                   
                          //stringify convierte el objeto en json para ser visualizado por el alert, o si no  solo se observa object object
                    //SI alert(JSON.stringify(myJson14.registros[myJsonProcesado10]));
@@ -349,10 +349,10 @@ var app = new Vue({
 
                    //tenemos que extraer el id del primer elemento de la tabla seleccionada para comenzar a pintar desde ahi. El ordenamiento en la consulta cambia todo
                   
-                   console.log('El id del primer valor obtenido de la tabla segun lista desplegable es  '+myJsonProcesado10);
+                  // SI  console.log('El id del primer valor obtenido de la tabla segun lista desplegable es  '+myJsonProcesado10);
                    // SI alert('El id del primer valor obtenido de la tabla segun lista desplegable es  '+idMyJsonProcesado10);
 
-                   console.log('El id del ultimo valor obtenido de la tabla segun lista desplegable es  '+myJsonProcesado12);
+                  // SI console.log('El id del ultimo valor obtenido de la tabla segun lista desplegable es  '+myJsonProcesado12);
                    // SI alert('El id del ultimo valor obtenido de la tabla segun lista desplegable es  '+idMyJsonProcesado12);
 
 
@@ -377,16 +377,16 @@ var app = new Vue({
 
       //LOS LIMITES DE ESTE CICLO SON EL idTablaEvento y el lenght obtenido  de ese registro
                       var limiteInferior10 = parseInt(myJsonProcesado10);
-                      console.log('El limite inferior del ciclo es '+limiteInferior10);
+                      // SI console.log('El limite inferior del ciclo es '+limiteInferior10);
                       var limiteSuperior10 =  parseInt(myJsonProcesado12)
-                      console.log('El limite superior del ciclo es '+limiteSuperior10);
+                     // SI  console.log('El limite superior del ciclo es '+limiteSuperior10);
 
 
 
-                      console.log('El primer elemento del objeto completo segun el id de la lista es: ');
-                      console.log(myJson14.registros[limiteInferior10]);
-                      console.log('El ultimo elemento del objeto completo segun el id de la lista es: ');
-                      console.log(myJson14.registros[limiteSuperior10]);
+                      // SI console.log('El primer elemento del objeto completo segun el id de la lista es: ');
+                     // SI  console.log(myJson14.registros[limiteInferior10]);
+                      // SI console.log('El ultimo elemento del objeto completo segun el id de la lista es: ');
+                      // SI console.log(myJson14.registros[limiteSuperior10]);
 
               //Almacenamos en un arreglo aparte los datos del json, pero ordenado de acuerdo al campo orden
                       var arregloOrdenadoJson = []; //Array para almacenar el json de acuerdo al campo Orden
@@ -396,7 +396,7 @@ var app = new Vue({
 
 indiceArregloOrdenado=myJson14.registros[i14].orden; //el indice del arreglo sera el campo orden
  arregloOrdenadoJson[indiceArregloOrdenado]=  myJson14.registros[i14];  //guardamos todo el json en esa posicion                 
- console.log("El orden visualizado en el arreglo es : "+arregloOrdenadoJson[indiceArregloOrdenado].orden);
+ // SI console.log("El orden visualizado en el arreglo es : "+arregloOrdenadoJson[indiceArregloOrdenado].orden);
                   }
 
                   limiteInferior10 = 1;//limite inferior para recorrer el arreglo especial
@@ -429,14 +429,14 @@ let tooltip = arregloOrdenadoJson[i14].expresionRegular;//el tooltip será la in
 if(testigo.charCodeAt(0) == 0){
 
   //no hacemos nada, y por tanto no se pintará
-  console.log('El valor Unicode del carácter en el índice proporcionado  de la variable testigo es '+testigo.charCodeAt(0)+' para el campo '+nombreTestigo);
-console.log('El valor del campo '+nombreTestigo+ ' es: ' + testigo);
+  // SI console.log('El valor Unicode del carácter en el índice proporcionado  de la variable testigo es '+testigo.charCodeAt(0)+' para el campo '+nombreTestigo);
+// SI console.log('El valor del campo '+nombreTestigo+ ' es: ' + testigo);
 }
 else
 {
 //MOSTRAMOS 
-console.log('El valor Unicode del carácter en el índice proporcionado  de la variable testigo es '+testigo.charCodeAt(0)+' para el campo '+nombreTestigo);
-  console.log('El valor del campo '+nombreTestigo+ ' es: ' + testigo);
+// SI console.log('El valor Unicode del carácter en el índice proporcionado  de la variable testigo es '+testigo.charCodeAt(0)+' para el campo '+nombreTestigo);
+// SI  console.log('El valor del campo '+nombreTestigo+ ' es: ' + testigo);
 
 
 
@@ -472,7 +472,7 @@ ordenGrupoEnvoltorio= arregloOrdenadoJson[i14].grupo;
 //ordenamiento del flex
 if(!isNaN(parseInt(ordenGrupoEnvoltorio))){//convertimos a entero el grupo, y luego evaluamos si es un numero
 
-  console.log("El orden de grupo del elemento Padres es: "+ordenGrupoEnvoltorio); 
+ // SI  console.log("El orden de grupo del elemento Padres es: "+ordenGrupoEnvoltorio); 
   claseOrdenGrupoEnvoltorio='order-'+ordenGrupoEnvoltorio;
   
 
@@ -659,7 +659,7 @@ ordenGrupo= arregloOrdenadoJson[i14].ordenGrupo;
 //ordenamiento del flex
 if(ordenGrupo != 10){
 
-  console.log("El orden de grupo del elemento es: "+ordenGrupo); 
+  // SI console.log("El orden de grupo del elemento es: "+ordenGrupo); 
   claseOrdenGrupo='order-'+ordenGrupo;
   
 
@@ -772,10 +772,10 @@ fetch(url,{
 	return respuesta.json();
 })
 .then(datos=>{
-	console.log("Mensaje de funcion Modelo VUE recuperaJson(). Los datos obtenidos por fetch son : ");
-	console.dir( datos );
-	console.log("Mensaje de funcion Modelo VUE recuperaJson(). El tipo de datos del elemento recibido por fetch es : ");
-    console.log(typeof datos);
+// SI	console.log("Mensaje de funcion Modelo VUE recuperaJson(). Los datos obtenidos por fetch son : ");
+// SI 	console.dir( datos );
+// SI 	console.log("Mensaje de funcion Modelo VUE recuperaJson(). El tipo de datos del elemento recibido por fetch es : ");
+ // SI    console.log(typeof datos);
     
 
     var jsonRecibidoEnObjeto=datos;//guardamos en jsonRecibidoObjeto el objeto recuperado por fetch
@@ -803,8 +803,8 @@ fetch(url,{
 })
 .catch( e => {
 	 
-	 console.error( 'Mensaje de funcion Modelo VUE recuperaJson(). Algo salio mal. Error en la siguiente linea: ' ) ;
-	 console.log(e);
+	// SI console.error( 'Mensaje de funcion Modelo VUE recuperaJson(). Algo salio mal. Error en la siguiente linea: ' ) ;
+	// SI console.log(e);
 	 });
 
 
