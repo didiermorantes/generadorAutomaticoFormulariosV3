@@ -41,7 +41,7 @@ function validaVacio(miCampo,miMensaje){
         });
 
         //alert(miMensaje);
-        miCampo.value='Diligencie datos Válidos.';
+        miCampo.value='0';
         miCampo.focus();
         //retornamos 1 indicando que el campo estaba vacio
         return 1;
@@ -61,12 +61,25 @@ function validaFechaSuperior(miCampo){
     var currentTime = new Date();
     // Comparamos solo las fechas => no las horas!!
     currentTime.setHours(0,0,0,0);  // Lo iniciamos a 00:00 horas
+     console.log(currentTime);
 
-    var fechaFormulario =new Date(miCampo.value); //convertimos la fecha del formulario a un tipo que se pueda comparar con la fecha actual
+    var fechaFormulario =miCampo.value; //convertimos la fecha del formulario a un tipo que se pueda comparar con la fecha actual
+    console.log(fechaFormulario);
+
+    var parts =fechaFormulario.split('/');
+    // Please pay attention to the month (parts[1]); JavaScript counts months from 0:
+    // January - 0, February - 1, etc.
+    var mydate = new Date(parts[2], parts[1] - 1, parts[0]); 
+
+    fechaFormularioCompara = mydate.setHours(0,0,0,0);  // Lo iniciamos a 00:00 horas
+
+    //fechaFormularioCompara=mydate.toDateString();
+   
+    console.log(fechaFormularioCompara);
 
 
  
-    if( fechaFormulario > currentTime ){
+    if( fechaFormularioCompara > currentTime ){
         //alert('La fecha digitada no puede ser mayor a la fecha del sistema.');
         $.confirm({
             title: 'Alerta',
@@ -135,7 +148,7 @@ function valida_si_no(miCampo){
         });
 
         
-        miCampo.value="Diligencie Datos Válidos.";
+        miCampo.value="0";
         miCampo.focus();
         //retornamos 1 indicando que los datos no estaban en el rango
         return 1;
@@ -182,7 +195,7 @@ function valida_1_2(miCampo,miMensaje){
             }
         });
         
-        miCampo.value="Diligencie Datos Válidos.";
+        miCampo.value="0";
         miCampo.focus();
                 //retornamos 1 indicando que los datos no estaban en el rango
                 return 1;
@@ -234,7 +247,7 @@ function valida_1_3(miCampo,miMensaje){
         });
 
         
-        miCampo.value="Diligencie Datos Válidos.";
+        miCampo.value="0";
         miCampo.focus();
                         //retornamos 1 indicando que los datos no estaban en el rango
                         return 1;
@@ -248,15 +261,15 @@ function valida_1_3(miCampo,miMensaje){
 }
 
 
-function valida_1_12(miCampo,miMensaje){
-    if(miCampo.value<0 || miCampo.value>12 || isNaN(miCampo.value)){
-        //alert('Digite un valor entre 1 y 12.');
+function valida_1_14(miCampo,miMensaje){
+    if(miCampo.value<0 || miCampo.value>14 || isNaN(miCampo.value)){
+        //alert('Digite un valor entre 1 y 14.');
         //alert(miMensaje);
 
 
         $.confirm({
             title: 'Alerta',
-            content: 'Digite un valor entre 1 y 12.',
+            content: 'Digite un valor entre 1 y 14.',
             icon: 'fa fa-warning',
             type: 'red',
             typeAnimated: true,
@@ -287,7 +300,7 @@ function valida_1_12(miCampo,miMensaje){
         });
 
         
-        miCampo.value="Diligencie Datos Válidos.";
+        miCampo.value="0";
         miCampo.focus();
                         //retornamos 1 indicando que los datos no estaban en el rango
                         return 1;
@@ -300,6 +313,13 @@ function valida_1_12(miCampo,miMensaje){
 
 }
 
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+FUNCIONES CÁNCER DE MAMA Y CUELLO UTERINO
+
+*/
 
 /*
 
@@ -333,47 +353,6 @@ function validaTipoCancer(){
 
 }//fin validaTipoCancer
 
-
-
-
-/*
-
----------------------------------------------------------------------------------------------------------------------------------------------------------
-VALIDA TIPO CÁNCER  _ MENOR 18
-
-*/
-
-
-function validaTipoCancerMenor18(){
-
-    var miTipoCancerM = document.getElementById('TIPO_CA');
-    
-
-    var miTextoM="";
-    miTextoM+="1: Leucemia Linfoide Aguda.\n 2: Leucemia Mieloide Aguda.\n 3: Otras Leucemias.\n 4: Linfomas y Neoplasias Reticuloendoteliales.\n 5: Tumores del Sistema Nervioso Central.\n";
-    miTextoM+="6: Neuroblastoma y otros tumores de celulas nerviosas periféricas.\n 7: Retinoblastoma.\n 8: Tumores Renales.\n 9: Tumores Hepáticos.\n 10: Tumores Óseos Malignos.\n";
-    miTextoM+="11: Sarcomas de Tejidos Blandos y Extraóseos.\n 12: Tumores Germinales, Trofoblásticos, y otros Gonadales.\n 13: Tumores Epiteliales Malignos y Melanoma.\n 14: Otras Neoplasias Malignas No Especificadas.\n";
-    var miValidaVacioM =1;//inicializamos las variables en 1. Su valor cambiará si se ingresan datos validos
-    var miValidaValorM=1;//inicializamos las variables en 1. Su valor cambiará si se ingresan datos validos
-    //validamos campo vacio
-    miValidaVacioM=validaVacio(miTipoCancerM,miTextoM);
-
-    //validamos valor entre 1 y 3
-    miValidaValorM=valida_1_12(miTipoCancerM,miTextoM);
-
-
-    /*
-    //si ambas validaciones retornan cero significa que los datos ingresados son validos
-    if(miValidaVacioM==0 && miValidaValorM==0){
-//invocamos la función para habilitar los campos de acuerdo a la seleccion
-        habilitaCamposTipoCancer(miTipoCancerM);
-    
-    }//fin if
-
-
-*/
-
-}//fin validaTipoCancerMenor18
 
 
 
@@ -1079,9 +1058,140 @@ function validaFCH_SEG_TR(){
 /*
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
+FUNCIONES TIPO CANCER MENOR 18
+
+*/
+
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA TIPO CÁNCER  _ MENOR 18
+
+*/
+
+
+function validaTipoCancerMenor18(){
+
+    var miTipoCancerM = document.getElementById('TIPO_CA');
+    
+
+    var miTextoM="";
+    miTextoM+="1: Leucemia Linfoide Aguda.\n 2: Leucemia Mieloide Aguda.\n 3: Otras Leucemias.\n 4: Linfomas y Neoplasias Reticuloendoteliales.\n 5: Tumores del Sistema Nervioso Central.\n";
+    miTextoM+="6: Neuroblastoma y otros tumores de celulas nerviosas periféricas.\n 7: Retinoblastoma.\n 8: Tumores Renales.\n 9: Tumores Hepáticos.\n 10: Tumores Óseos Malignos.\n";
+    miTextoM+="11: Sarcomas de Tejidos Blandos y Extraóseos.\n 12: Tumores Germinales, Trofoblásticos, y otros Gonadales.\n 13: Tumores Epiteliales Malignos y Melanoma.\n 14: Otras Neoplasias Malignas No Especificadas.\n";
+    var miValidaVacioM =1;//inicializamos las variables en 1. Su valor cambiará si se ingresan datos validos
+    var miValidaValorM=1;//inicializamos las variables en 1. Su valor cambiará si se ingresan datos validos
+    //validamos campo vacio
+    miValidaVacioM=validaVacio(miTipoCancerM,miTextoM);
+
+    //validamos valor entre 1 y 3
+    miValidaValorM=valida_1_14(miTipoCancerM,miTextoM);
+
+
+    /*
+    //si ambas validaciones retornan cero significa que los datos ingresados son validos
+    if(miValidaVacioM==0 && miValidaValorM==0){
+//invocamos la función para habilitar los campos de acuerdo a la seleccion
+        habilitaCamposTipoCancer(miTipoCancerM);
+    
+    }//fin if
 
 
 */
+
+}//fin validaTipoCancerMenor18
+
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA FEC_DX2NEO
+
+*/
+
+function validaFecDx2Neo(){
+
+    var miFecDx2Neo = document.getElementById('FEC_DX2NEO');
+    validaFechaSuperior(miFecDx2Neo);
+
+}
+
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA FEC_DX
+
+*/
+
+function validaFecDx(){
+
+    var miFecDx = document.getElementById('FEC_DX');
+    validaFechaSuperior(miFecDx);
+
+}
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA FEC_TOMADP
+
+*/
+
+function validaFecTomaDp(){
+
+    var miFecTomaDp = document.getElementById('FEC_TOMADP');
+    validaFechaSuperior(miFecTomaDp);
+
+}
+
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA FEC_RES_DP
+
+*/
+
+function validaFecResDp(){
+
+    var miFecResDp = document.getElementById('FEC_RES_DP');
+    validaFechaSuperior(miFecResDp);
+
+}
+
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA FEC_TOMADD
+
+*/
+
+function validaFecTomaDd(){
+
+    var miFecTomaDd = document.getElementById('FEC_TOMADD');
+    validaFechaSuperior(miFecTomaDd);
+
+}
+
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA FEC_RES_DD
+
+*/
+
+function validaFecResDd(){
+
+    var miFecResDd = document.getElementById('FEC_RES_DD');
+    validaFechaSuperior(miFecResDd);
+
+}
+
+
 
 
 /*  FUNCION PARA POBLAR LISTA DESPLEGABLE CON JAVASCRIPT PURO
