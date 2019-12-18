@@ -655,9 +655,9 @@ if(arregloOrdenadoJson[i14].tipo=="DATE" ){
 //ordenGrupo= myJson14.registros[i14].ordenGrupo; //DESCOMENTARIAR SI NO SE USA EL ARREGLO ORDENADO
 ordenGrupo= arregloOrdenadoJson[i14].ordenGrupo; 
 
-//validamos que la variable tenga un valor diferente al valor que tiene por defecto
+//validamos que la variable tenga un valor diferente al valor que tiene por defecto (el valor 1000 se asigna en el campo ordenGrupo para descartarlo de ordenamiento)
 //ordenamiento del flex
-if(ordenGrupo != 10){
+if(ordenGrupo != 1000){
 
   // SI console.log("El orden de grupo del elemento es: "+ordenGrupo); 
   claseOrdenGrupo='order-'+ordenGrupo;
