@@ -1,7 +1,7 @@
 /*
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
-FUNCIONES GENÉRICAS
+																	FUNCIONES GENÉRICAS
 
 */
 
@@ -61,10 +61,10 @@ function validaFechaSuperior(miCampo){
     var currentTime = new Date();
     // Comparamos solo las fechas => no las horas!!
     currentTime.setHours(0,0,0,0);  // Lo iniciamos a 00:00 horas
-     console.log(currentTime);
+    // console.log(currentTime);
 
     var fechaFormulario =miCampo.value; //convertimos la fecha del formulario a un tipo que se pueda comparar con la fecha actual
-    console.log(fechaFormulario);
+    //console.log(fechaFormulario);
 
     var parts =fechaFormulario.split('/');
     // Please pay attention to the month (parts[1]); JavaScript counts months from 0:
@@ -75,7 +75,7 @@ function validaFechaSuperior(miCampo){
 
     //fechaFormularioCompara=mydate.toDateString();
    
-    console.log(fechaFormularioCompara);
+   // console.log(fechaFormularioCompara);
 
 
  
@@ -109,6 +109,65 @@ function validaFechaSuperior(miCampo){
 
 }
 
+function compara2Fechas(fecha1,fecha2){
+
+
+    var currentTime = new Date();
+
+    var ano=currentTime.getFullYear();
+    var mes=(currentTime.getMonth())+1;//el mes es entre 0 y 11
+    var dia=currentTime.getDate();
+    var estaFecha="";
+    estaFecha+=dia;
+    estaFecha+="/";
+    estaFecha+=mes;
+    estaFecha+="/";
+    estaFecha+=ano;
+
+ 
+
+    var mensaje="Digite un valor entre ";
+    mensaje+=fecha1.value;
+    mensaje+=" y ";
+    mensaje+=estaFecha;
+
+//console.log(fecha1);
+//console.log(fecha2);
+//console.log(estaFecha);
+
+	if(fecha2.value < fecha1.value){
+
+
+					 //alert('La fecha digitada no puede ser mayor a la fecha del sistema.');
+			        $.confirm({
+			            title: 'Alerta',
+			            content: mensaje,
+			            icon: 'fa fa-warning',
+			            type: 'red',
+			            typeAnimated: true,
+			            buttons: {
+			                close: {
+			                    text: 'Aceptar',
+			                    btnClass: 'btn-red',
+			                    action: function(){
+			                    }
+			                }
+			            }
+			        });
+			       fecha2.value=currentTime;
+			        fecha2.focus();
+			                //retornamos 1 indicando que la fecha es superior
+			                return 1;
+
+			    }
+			    else{
+			         //de lo contrario retornamos cero
+			        return 0;
+			    }
+
+
+}//fin compara2Fechas
+
 
 function valida_si_no(miCampo){
 
@@ -133,7 +192,7 @@ function valida_si_no(miCampo){
         });
         $.confirm({
             title: 'Alerta',
-            content: '1 Si.\n2 No.',
+            content: '1=Si, 2=No',
             icon: 'fa fa-warning',
             type: 'red',
             typeAnimated: true,
@@ -261,6 +320,113 @@ function valida_1_3(miCampo,miMensaje){
 }
 
 
+function valida_1_5(miCampo,miMensaje){
+    if(miCampo.value<0 || miCampo.value>5 || isNaN(miCampo.value)){
+        //alert('Digite un valor entre 1 y 3.');
+        //alert(miMensaje);
+
+
+        $.confirm({
+            title: 'Alerta',
+            content: 'Digite un valor entre 1 y 5.',
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
+
+        $.confirm({
+            title: 'Alerta',
+            content: miMensaje,
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
+
+        
+        miCampo.value="0";
+        miCampo.focus();
+                        //retornamos 1 indicando que los datos no estaban en el rango
+                        return 1;
+    }
+    else{
+        //De lo contrario retornamos cero
+        return 0;
+
+    }
+
+}
+
+
+function valida_1_8(miCampo,miMensaje){
+    if(miCampo.value<0 || miCampo.value>8 || isNaN(miCampo.value)){
+        //alert('Digite un valor entre 1 y 3.');
+        //alert(miMensaje);
+
+
+        $.confirm({
+            title: 'Alerta',
+            content: 'Digite un valor entre 1 y 8.',
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
+
+        $.confirm({
+            title: 'Alerta',
+            content: miMensaje,
+            icon: 'fa fa-warning',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                close: {
+                    text: 'Aceptar',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
+
+        
+        miCampo.value="0";
+        miCampo.focus();
+                        //retornamos 1 indicando que los datos no estaban en el rango
+                        return 1;
+    }
+    else{
+        //De lo contrario retornamos cero
+        return 0;
+
+    }
+
+}
+
+
+
 function valida_1_14(miCampo,miMensaje){
     if(miCampo.value<0 || miCampo.value>14 || isNaN(miCampo.value)){
         //alert('Digite un valor entre 1 y 14.');
@@ -317,7 +483,7 @@ function valida_1_14(miCampo,miMensaje){
 /*
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
-FUNCIONES CÁNCER DE MAMA Y CUELLO UTERINO
+                                                     FUNCIONES CÁNCER DE MAMA Y CUELLO UTERINO
 
 */
 
@@ -400,6 +566,17 @@ function habilitaCamposTipoCancer(miCampo){
         miResBAden.disabled=true;
         miResBHist.disabled=true;
 
+        //limpiamos los campos de cancer de cuello uterino
+        miFecTomaE.value="";
+        miFecResEx.value="";
+        miBiopExoce.value="";
+        miResBExoc.value="";
+        miGradoHist.value="";
+        miBiopEndoc.value="";
+        miResBAden.value="";
+        miResBHist.value="";
+
+
 
         //habilitamos campos de cáncer de mama
         miFecProCo.disabled=false;
@@ -415,6 +592,12 @@ function habilitaCamposTipoCancer(miCampo){
         miFecResBi.disabled=true;
         miResBiops9.disabled=true;
         miGradHisto.disabled=true;
+
+              //limpiamos campos de cancer de mama
+        miFecProCo.value="";
+        miFecResBi.value="";
+        miResBiops9.value="";
+        miGradHisto.value="";
 
         //habilitamos campos de cancer de cuello uterino
         miFecTomaE.disabled=false;
@@ -459,6 +642,8 @@ VALIDA FEC_PRO_CO  _ CÁNCER DE MAMA Y CUELLO UTERINO
 function validaFechaProCo(){
 
     var miFecProCo = document.getElementById('FEC_PRO_CO');
+    var miTexto = 'Fecha Incorrecta';
+    validaVacio(miFecProCo,miTexto);
     validaFechaSuperior(miFecProCo);
 
   }//fin validFechaExam
@@ -474,10 +659,34 @@ VALIDA FEC_RES_BI  _ CÁNCER DE MAMA Y CUELLO UTERINO
 function validaFechaResult(){
 
     var miFecResBi = document.getElementById('FEC_RES_BI');
+    var miTexto = 'Fecha Incorrecta';
+    validaVacio(miFecResBi,miTexto);
     validaFechaSuperior(miFecResBi);
+    validaFechaResultMayorFechaExamen();
 
 
   }//fin validaFechaResult
+
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA FEC_RES_BI  _ CÁNCER DE MAMA Y CUELLO UTERINO
+
+*/
+function validaFechaResultMayorFechaExamen(){
+
+	var miFechaProCo = document.getElementById('FEC_PRO_CO');
+    var miFecResBi = document.getElementById('FEC_RES_BI');
+    
+    compara2Fechas(miFechaProCo,miFecResBi);
+
+
+  }//fin validaFechaResult
+
+
+
+
 
 
 /*
@@ -538,6 +747,8 @@ VALIDA FEC_TOMA_E
 
 function validaFechaTomaE(){
     var miFecTomaE = document.getElementById('FEC_TOMA_E');
+    var miTexto = 'Fecha Incorrecta';
+    validaVacio(miFecTomaE,miTexto);
     validaFechaSuperior(miFecTomaE);
 
 
@@ -554,6 +765,8 @@ VALIDA FEC_RES_EX
 
 function validaFechaResEx(){
     var miFecResEx = document.getElementById('FEC_RES_EX');
+    var miTexto = 'Fecha Incorrecta';
+    validaVacio(miFecResEx,miTexto);
     validaFechaSuperior(miFecResEx);
 
 
@@ -945,7 +1158,7 @@ VALIDA quimiotera
 */
 function validaQuimiotera(){
     var miQuimiotera = document.getElementById('quimiotera');
-    var miTexto = "1=Si.\n2=No.";
+    var miTexto = "1=Si. \n2=No.";
 
     //validamos campo vacio
     validaVacio(miQuimiotera,miTexto);
@@ -1045,6 +1258,8 @@ VALIDA FCH_SEG_TR
 function validaFCH_SEG_TR(){
 
     var miFCH_SEG_TR = document.getElementById('FCH_SEG_TR');
+    var miTexto = 'Fecha Incorrecta';
+    validaVacio(miFCH_SEG_TR,miTexto);
     validaFechaSuperior(miFCH_SEG_TR);
 
   }//fin validFechaExam
@@ -1058,7 +1273,7 @@ function validaFCH_SEG_TR(){
 /*
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
-FUNCIONES TIPO CANCER MENOR 18
+                                                             FUNCIONES TIPO CANCER MENOR 18
 
 */
 
@@ -1113,6 +1328,8 @@ VALIDA FEC_DX2NEO
 function validaFecDx2Neo(){
 
     var miFecDx2Neo = document.getElementById('FEC_DX2NEO');
+    var miTexto = 'Fecha Incorrecta';
+    validaVacio(miFecDx2Neo,miTexto);
     validaFechaSuperior(miFecDx2Neo);
 
 }
@@ -1128,6 +1345,8 @@ VALIDA FEC_DX
 function validaFecDx(){
 
     var miFecDx = document.getElementById('FEC_DX');
+    var miTexto = 'Fecha Incorrecta';
+    validaVacio(miFecDx,miTexto);
     validaFechaSuperior(miFecDx);
 
 }
@@ -1142,6 +1361,8 @@ VALIDA FEC_TOMADP
 function validaFecTomaDp(){
 
     var miFecTomaDp = document.getElementById('FEC_TOMADP');
+    var miTexto = 'Fecha Incorrecta';
+    validaVacio(miFecTomaDp,miTexto);
     validaFechaSuperior(miFecTomaDp);
 
 }
@@ -1157,7 +1378,10 @@ VALIDA FEC_RES_DP
 function validaFecResDp(){
 
     var miFecResDp = document.getElementById('FEC_RES_DP');
+    var miTexto = 'Fecha Incorrecta';
+    validaVacio(miFecResDp,miTexto);
     validaFechaSuperior(miFecResDp);
+    validaFechaResultMayorFechaExamen2();
 
 }
 
@@ -1172,6 +1396,8 @@ VALIDA FEC_TOMADD
 function validaFecTomaDd(){
 
     var miFecTomaDd = document.getElementById('FEC_TOMADD');
+    var miTexto = 'Fecha Incorrecta';
+    validaVacio(miFecTomaDd,miTexto);
     validaFechaSuperior(miFecTomaDd);
 
 }
@@ -1187,9 +1413,276 @@ VALIDA FEC_RES_DD
 function validaFecResDd(){
 
     var miFecResDd = document.getElementById('FEC_RES_DD');
+    var miTexto = 'Fecha Incorrecta';
+    validaVacio(miFecResDd,miTexto);
     validaFechaSuperior(miFecResDd);
+    validaFechaResultMayorFechaExamen3();
 
 }
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA CONSX2_NEO
+
+*/
+
+function validaConsx2Neo(){
+
+    var miConsx2Neo = document.getElementById('CONSX2_NEO');
+    var miTexto = '1=Si, 2=No';
+    validaVacio(miConsx2Neo,miTexto);
+    valida_si_no(miConsx2Neo);
+    validaFechaPrimerDiag();
+
+}
+
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA RECAIDA
+
+*/
+
+function validaRecaida(){
+
+    var miRecaida = document.getElementById('RECAIDA');
+    var miTexto = '1=Si, 2=No';
+    validaVacio(miRecaida,miTexto);
+    valida_si_no(miRecaida);
+    validaFechaPrimerDiag();
+
+}
+
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA validaFechaPrimerDiag
+
+*/
+
+function validaFechaPrimerDiag(){
+var miConsx2Neo2 = document.getElementById('CONSX2_NEO');
+var miRecaida2 = document.getElementById('RECAIDA');
+var miFecDx2 = document.getElementById('FEC_DX');
+
+//inHabilitamos y borramos el contenido del campo FEC_DX si  recaida es 2 y 2Neo es 2, de lo contrario lo habilitamos 
+
+			if(miConsx2Neo2.value==1 && miRecaida2.value==1){
+
+			        $.confirm({
+			            title: 'Alerta',
+			            content: 'Las variables Segunda Neoplasia y Recaida son Excluyentes.',
+			            icon: 'fa fa-warning',
+			            type: 'red',
+			            typeAnimated: true,
+			            buttons: {
+			                close: {
+			                    text: 'Aceptar',
+			                    btnClass: 'btn-red',
+			                    action: function(){
+			                    }
+			                }
+			            }
+			        });
+
+			        miConsx2Neo2.value="0";
+			        miRecaida2.value="0";
+
+			}
+		if(miConsx2Neo2.value==2 && miRecaida2.value==2 ){
+
+			miFecDx2.disabled=true;
+			miFecDx2.value="";
+			$('#FEC_DX').data('kendoDatePicker').enable(false);
+			
+
+			
+
+		}
+		else{
+			miFecDx2.disabled=false;
+			$('#FEC_DX').data('kendoDatePicker').enable(true);
+			
+
+		}
+
+}
+
+
+
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA CRIT_DX_PR
+
+*/
+
+function validaCritDxPr(){
+
+    var miCritDxPr = document.getElementById('CRIT_DX_PR');
+    var miTexto = '1=Extendido de sangre periférica, 2=Radiología diagnóstica, 3=Gammagrafía, 4=MarcadoresTumorales, 5=Clínica sin otra ayuda diagnóstica';
+          //validamos campo vacio
+    miValidaVacioCritDxPr=validaVacio(miCritDxPr,miTexto);
+
+    //validamos valor entre 1 y 5
+    miValidaValorCritDxPr=valida_1_5(miCritDxPr,miTexto);
+
+
+    //si ambas validaciones retornan cero significa que los datos ingresados son validos
+    if(miValidaVacioCritDxPr==0 && miValidaValorCritDxPr==0){
+
+    		//validamos si se ingreso un valor de 5
+    	if(miCritDxPr.value==5){
+		//invocamos la función para inhabilitar los campos de acuerdo a la seleccion
+        	inhabilitaCamposDiagnosticoProbable();
+
+    		}
+    	else{
+    			//si es un valor diferente de 5 habilitamos todos los campos
+			habilitaCamposDiagnosticoProbable();
+    		}
+
+    
+    }//fin if
+
+}//fin validaCritDxPr
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+funcion para inhabilitaCamposDiagnosticoProbable
+
+*/
+
+function inhabilitaCamposDiagnosticoProbable(){
+
+
+//el dato no es vacio y tiene el valor de 5
+    // DESHABILITAMOS CAMPOS SEGÚN SIVIGILA ESCRITORIO
+
+    var miFechaTomaDP = document.getElementById('FEC_TOMADP');
+    var miFechaResDP = document.getElementById('FEC_RES_DP');
+    var miCritDxDE = document.getElementById('CRIT_DX_DE');
+    var miFecTomaDd = document.getElementById('FEC_TOMADD');
+    var miFecResDd = document.getElementById('FEC_RES_DD');
+
+    //deshabilitamos campos 
+
+	miFechaTomaDP.disabled=true;
+	miFechaResDP.disabled=true;
+	miCritDxDE.disabled=true;
+	miFecTomaDd.disabled=true;
+	miFecResDd.disabled=true;
+
+	//borramos campos
+
+	miFechaTomaDP.value="";
+	miFechaResDP.value="";
+	miCritDxDE.value="";
+	miFecTomaDd.value="";
+	miFecResDd.value="";
+
+} //fin inhabilitaCamposDiagnosticoProbable
+
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+funcion para  habilitaCamposDiagnosticoProbable
+
+*/
+
+function habilitaCamposDiagnosticoProbable(){
+
+
+//el dato no es vacio y tiene el valor diferente de 5
+    // HABILITAMOS CAMPOS SEGÚN SIVIGILA ESCRITORIO
+
+    var miFechaTomaDP = document.getElementById('FEC_TOMADP');
+    var miFechaResDP = document.getElementById('FEC_RES_DP');
+    var miCritDxDE = document.getElementById('CRIT_DX_DE');
+    var miFecTomaDd = document.getElementById('FEC_TOMADD');
+    var miFecResDd = document.getElementById('FEC_RES_DD');
+
+    //habilitamos campos 
+
+	miFechaTomaDP.disabled=false;
+	miFechaResDP.disabled=false;
+	miCritDxDE.disabled=false;
+	miFecTomaDd.disabled=false;
+	miFecResDd.disabled=false;
+
+
+
+} //fin habilitaCamposDiagnosticoProbable
+
+
+
+
+/*
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA validaFechaResultMayorFechaExamen2
+
+*/
+function validaFechaResultMayorFechaExamen2(){
+
+	var miFechaTomaDp2 = document.getElementById('FEC_TOMADP');
+    var miFecResDp2 = document.getElementById('FEC_RES_DP');
+    
+    compara2Fechas(miFechaTomaDp2,miFecResDp2);
+
+
+  }//fin validaFechaResult
+
+/*
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA validaFechaResultMayorFechaExamen3
+
+*/
+function validaFechaResultMayorFechaExamen3(){
+
+	var miFechaTomaDd2 = document.getElementById('FEC_TOMADD');
+    var miFecResDd2 = document.getElementById('FEC_RES_DD');
+    
+    compara2Fechas(miFechaTomaDd2,miFecResDd2);
+
+
+  }//fin validaFechaResult
+
+
+/*
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+VALIDA CritDxDe
+
+*/
+function validaCritDxDe(){
+
+	var miCritDxDe2 = document.getElementById('CRIT_DX_DE');
+
+	  var miTexto2 = '1=Mielograma, 2=Histopatología o citología de fluido corporal, 3=Inmunotipificación, 4=Criterio médico especializado, 5=Certificado de defunción, 7=Citogenética, 8=Radiología diagnóstica.';
+          //validamos campo vacio
+    miValidaVacioCritDxPr=validaVacio(miCritDxDe2,miTexto2);
+
+    //validamos valor entre 1 y 5
+    miValidaValorCritDxPr=valida_1_8(miCritDxDe2,miTexto2);
+
+
+
+  }//fin CritDxDe
+
+
+
+
+
 
 
 

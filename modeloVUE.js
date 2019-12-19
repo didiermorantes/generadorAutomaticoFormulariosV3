@@ -596,6 +596,8 @@ lista14.setAttribute('onchange', 'correlacionarListaDesplegable()');
 
 
                               input14.setAttribute('type', arregloOrdenadoJson[i14].tipo);
+                              input14.setAttribute('tabindex', 0);//hacemos al componente input enfocable
+                              
 
 
                          
